@@ -85,15 +85,61 @@ section {
   .patch img {
     width: 300px;
   }
+  .basket img {
+    width: 200px;
+  }
+  .receipt img {
+    width: 200px;
+  }
 }
 
 @media (max-width: 480px) {
   .patch img {
     width: 200px;
   }
+  .basket img {
+    width: 100px;
+  }
+  .receipt img {
+    width: 100px;
+  }
 }
 
 .rest{
   position: relative;
   padding-top: 14vh;
+}
+
+.basket {
+  top: 0;
+  position: relative; /* Essential for positioning the child relative to the container */
+}
+
+.basket img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Shifts the image back by half its own width and height */
+  max-width: 100%;
+  height: auto;
+}
+
+.receipt {
+  top: 0;
+  position: relative; /* Essential for positioning the child relative to the container */
+}
+
+.receipt img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Shifts the image back by half its own width and height */
+  max-width: 100%;
+  height: auto;
+}
+
+
+.no-margin{
+  padding: 0;
+  margin: 0;
 }
