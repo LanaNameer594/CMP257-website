@@ -37,7 +37,7 @@ body{
   font-size: 30px;
   font-weight: 600;
   padding-top: 30px;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
   text-transform: none;
 }
 
@@ -45,7 +45,7 @@ body{
   font-family: 'Hypermarket', sans-serif;
   font-size: 1.5rem;
   text-align: center;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
 }
 
 p{
