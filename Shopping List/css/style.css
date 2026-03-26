@@ -8,21 +8,100 @@
   src: url('../fonts/Able_Lead.ttf');
 }
 
-body{
-    background-image: url(../images/Background.png);
-    background-position: center;
-    background-size: cover;
-    height: 100vh;
-
-    font-family: 'Able Lead', serif;
+@font-face {
+  font-family: 'Hypermarket';
+  src: url('../fonts/hypermarket-regular.ttf');
 }
 
-#title_font{
-    font-family: 'Rigoletto', sans-serif;
-    font-weight: normal;
-    color: #133951;
-    font-size: 40px;
-    margin: 10px;
+body{
+  background-image: url(../images/Background.png);
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+
+  font-family: 'Able Lead', serif;
+}
+
+.title_font{
+  font-family: 'Rigoletto', sans-serif;
+  font-weight: normal;
+}
+
+.navbar .title_font{
+  color: #133951;
+  font-size: 40px;
+  margin: 10px;
+}
+
+.receipt .title_font{
+  font-size: 30px;
+  font-weight: 600;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  text-transform: none;
+}
+
+.groceries{
+  font-family: 'Hypermarket', sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+p{
+  margin: 0 0 10px;
+}
+
+.list{
+  margin: 5px 0vh;
+}
+
+.info{
+  margin: 0vh;
+  text-align: left;
+}
+
+p, table, .info{
+  font-family: 'Hypermarket', sans-serif;
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+thead{
+  border-top: 1px dashed;
+  border-bottom: 1px dashed;
+}
+
+.begin{
+  padding-left: 0vh;
+}
+
+td{
+  padding: 2px 10px;
+  vertical-align: top;
+}
+
+.length{
+  text-align: right;
+  padding-left: 10px;
+  padding-right: 0px;
+}
+
+.thanks{
+  text-align: center;
+  padding: 15px 0px;
+}
+
+.thanks img{
+  vertical-align: middle;
+  width: 70%;
+  border: 0;
 }
 
 .nav_style{
@@ -57,9 +136,11 @@ section {
   border-right: #133951 solid 2px;
 }
 
-.col-6{
-  margin: 2% auto;
+.custom-col {
+  margin-top: 2%;
+  margin-bottom: 2%;
   min-height: 66vh;
+  position: relative;
 }
 
 .patch {
@@ -116,28 +197,38 @@ section {
 }
 
 .basket img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Shifts the image back by half its own width and height */
+  width: auto;
+  height: 45vh;
   max-width: 100%;
-  height: auto;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .receipt {
   top: 0;
-  position: relative; /* Essential for positioning the child relative to the container */
+  position: relative;
+  background-image: url(../images/Receipt\ Shadow.png);
+  background-position: center;
+  max-width: 400px;
+  padding: 30px;
+  text-transform: uppercase;
+  background-size: cover;
+  margin: 0 auto; /* centers it within the col-6 */
 }
 
-.receipt img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Shifts the image back by half its own width and height */
+/*.receipt img {
+  width: auto;
+  height: 80vh;
   max-width: 100%;
-  height: auto;
-}
-
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}*/
 
 .no-margin{
   padding: 0;
