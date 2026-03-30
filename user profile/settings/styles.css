@@ -1,0 +1,241 @@
+*{
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Able Lead', serif;
+    color:rgb(222, 217, 209);
+}
+
+@font-face {
+  font-family: 'Able Lead';
+  src: url('fonts/Able_Lead.ttf');
+}
+
+@font-face {
+  font-family: 'Rigoletto';
+  src: url('fonts/Rigoletto.otf');
+}
+
+body{
+    background:#133951;
+}
+
+.title_font{
+  font-family: 'Rigoletto', sans-serif;
+  font-weight: normal;
+}
+
+.navbar .title_font{
+  color: #133951;
+  font-size: 40px;
+  margin: 10px;
+}
+
+.navbar .profile-picture{
+  width:6%;
+  border-radius: 50%;
+  margin: 15px;
+}
+
+.nav_style {
+    font-size: 40px;
+    background-color: #F3C12C;
+    color: #133951;
+}
+
+.nav-link{
+  margin-left: 30px;
+}
+
+.navbar-toggler{
+  border: 2px solid #133951;
+}
+
+.navbar-toggler .navbar-toggler-icon{
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2819, 57, 81, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.dropdown-item{
+  color:#112d4a;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.mini-header h1{
+  text-align: center;
+  font-size: 400%;
+  font-weight:600;
+  margin: 40px 0 0 0;
+}
+
+.mini-header p{
+  text-align: center;
+  font-size: 200%;
+  margin: -5px 0 70px 0;
+}
+
+.general-info {
+  background: #ffe99e;
+  position: relative;
+  margin: auto;
+  margin: 3% 29%;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+/* Section title */
+.general-info h2 {
+  color: #133951;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 5px;
+}
+
+.general-info  p {
+  color: #133951;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Each row */
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  gap: 15px;
+}
+
+/* Labels */
+.box label, .box span {
+  color:#112d4a;
+  font-weight: 600;
+  min-width: 120px;
+}
+
+/* Inputs */
+.box input{
+  width:140%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.box input:focus {
+  border-color:#112d4a;
+}
+
+.pfp-box{
+  text-align: center;
+}
+
+.profile-picture {
+  width: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  
+}
+
+#file-input {
+  display: none;
+}
+
+.upload-button {
+  background: #4a90e2;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.upload-button:hover {
+  background: #357abd;
+}
+
+/* Password row */
+.box a {
+  color: #2074da;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.box a:hover {
+  text-decoration: underline;
+}
+
+.edit-profile {
+  background: #eee;
+  color:#112d4a;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.save-changes {
+  background: #4a90e2;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.save-changes:hover {
+  background: #357abd;
+}
+
+/* Dark mode toggle row */
+.box img {
+  width: 20px;
+}
+
+.box button {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.box .edit-profile{
+  color:#112d4a;
+}
+
+.box .upload-button{
+  color:#ddd;
+}
+
+.box .toggle-theme{
+  background:#222;
+}
+
+.dark-mode{
+  height:20px;
+  width:auto;
+}
+
+
+@media (max-width: 600px) {
+  .box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .box label,
+  .box span {
+    min-width: auto;
+  }
+
+  .general-info {
+    width: 100%;
+  }
+}

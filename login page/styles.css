@@ -1,0 +1,124 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Able Lead', serif;
+}
+
+@font-face {
+  font-family: 'Able Lead';
+  src: url('fonts/Able_Lead.ttf');
+}
+
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #ffe99e;
+    background-image: url(bg\ login.jpg);
+}
+
+.wrapper{
+    width: 600px;
+    height:600px;
+    background: rgb(222, 217, 209);
+    border: 2px solid #1d2845a5;
+    color:#1d2845;
+    box-shadow: 0 0 10px rgb(175, 171, 171);
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+#question-mark{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+.wrapper h1{
+    font-size: 45px;
+    text-align: center;
+    padding: 20px;
+}
+
+.wrapper img{
+    height: 180px;
+    width: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.wrapper .input-box{
+    position:relative;
+    width: 100%;
+    padding-top: 20;
+    height:50px;
+    margin: 30px 0 30px 0;
+}
+
+.input-box input{
+    width:100%;
+    height:100%;
+    background:transparent;
+    border:none;
+    outline:none;
+    border: 2px solid #1d2845;
+    border-radius: 40px;
+    font-size: 18px;
+    color: #1d2845;
+    padding: 22px 45px 20px 20px;
+}
+
+.input-box input::placeholder{
+    color:#1d2845;
+}
+
+
+.wrapper .remember-forgot{
+    text-align: right;
+    font-size: 17.5px;
+    margin: -15px 10px;
+}
+
+
+.remember-forgot a{
+    color:#1d2845;
+    text-decoration: underline;
+}
+
+.remember-forgot a:hover{
+    text-decoration: underline;
+}
+
+.wrapper .btn{
+    width: 100%;
+    height:45px;
+    margin-top: 70px;
+    background:#1d2845;
+    border:none;
+    outline:none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.156);
+    cursor:pointer;
+    color:#fff;
+    font-weight:600;
+    font-size: 20px;
+}
+
+.wrapper .register-link{
+    font-size:20px;
+    text-align: center;
+    margin: 20px 0 -4px;
+}
+
+.register-link p a{
+    color:#1d2845;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover{
+    text-decoration: underline;
+}
+
+

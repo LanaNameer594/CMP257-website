@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Settings</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav_style">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <img class="profile-picture" src="dragon.png">
+        <a class="navbar-brand title_font" href="home.html">Welcome, User!</a>
+        <button class="navbar-toggler nav_style" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link nav_style" href="recipes.html">Recipes</a>
+            <a class="nav-link nav_style" href="shopping_list.html">Shopping List</a>
+            <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle nav_style" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Favorites</a></li>
+                <li><a class="dropdown-item" href="#">Collections</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+              </ul>
+            </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  
+  <div class="mini-header">
+    <h1>Settings</h1>
+    <p>Smth smth smth</p>
+  </div>
+
+  <div class="general-info">
+    <h2>General Info</h2>
+    <p>General Information About Your Account</p>
+
+    <div class="pfp-box">
+      <img src="dragon.png" class="profile-picture">
+    </div>
+    <div class="box">
+      <input type="file" id="file-input" accept=".png, .jpg, .jpeg">
+      <label for="file-input" class="upload-button">Edit Profile Picture</label>
+    </div>
+    <div class="box">
+      <label for="first-name">First Name</label>
+      <input type="text" id="first-name" placeholder="Jane" disabled>
+    </div>
+    <div class="box">
+      <label for="last-name">Last Name</label>
+      <input type="text" id="last-name" placeholder="Doe" disabled>
+    </div>
+    <div class="box">
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="JaneDoe" disabled>
+    </div>
+    <div class="box">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="jane.doe@gmail.com" disabled>
+    </div>
+    <div class="box">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="....." disabled>
+    </div>
+      
+    <div class="box">
+      <button class="edit-profile" type="button">Edit Profile</button>
+      <button class="save-changes" type="submit">Save Changes</button>
+    </div>
+    <div class="box">
+      <label for="toggle-theme">Dark Mode <img class="dark-mode" src="moon.png"></label>
+      <button class="toggle-theme" type="button">Toggle</button>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
