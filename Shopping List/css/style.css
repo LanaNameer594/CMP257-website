@@ -277,7 +277,7 @@ section {
 
 .item {
   position: absolute;
-  width: 30%;
+  width: 40%;
   height: auto;
 }
 
@@ -294,6 +294,7 @@ section {
 .milk {
   top: 35%;
   right: 10%;
+  width: 35%;
 }
 
 .chicken {
