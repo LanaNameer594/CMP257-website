@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Collections</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="nav_style">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <img class="profile-picture" src="dragon.png">
+        <a class="navbar-brand title_font" href="home.html">Welcome, User!</a>
+        <button class="navbar-toggler nav_style" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link nav_style" href="recipes.html">Recipes</a>
+            <a class="nav-link nav_style" href="shopping_list.html">Shopping List</a>
+            <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle nav_style" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="favorites.html">Favorites</a></li>
+                <li><a class="dropdown-item" href="collections.html">Collections</a></li>
+                <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+              </ul>
+            </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="mini-header">
+    <h1>Collections</h1>
+    <p>Explore the recipes you have saved in collections</p>
+  </div>
+
+  <div class="folders">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card h-100">
+          <a href="#"><img src="breakfast.png" class="card-img-top" alt="..."></a>
+        </div>
+      </div>
+    <div class="col">
+      <div class="card h-100">
+        <a href="#"><img src="lunch.png" class="card-img-top" alt="..."></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <a href="#"><img src="dinner.png" class="card-img-top" alt="..."></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <a href="#"><img src="dessert.png" class="card-img-top" alt="..."></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <a href="#"><img src="add (2).png" class="card-img-top" alt="..."></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
