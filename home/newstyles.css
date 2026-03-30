@@ -1,0 +1,131 @@
+#pickModal{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#pickModal.active{
+  display: flex;
+}
+
+#pickModal .modal-content{
+  position: relative;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  width: auto;
+  max-width: 90%;
+}
+
+#pickModal .modal-close{
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  background: transparent;
+  border: none;
+  color: #1d2845;
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+#pickModal .wrapper{
+  width: 600px;
+  height: 600px;
+  background: rgb(222, 217, 209);
+  border: 2px solid #1d2845a5;
+  color: #1d2845;
+  box-shadow: 0 0 10px rgb(175, 171, 171);
+  border-radius: 10px;
+  padding: 30px 40px;
+}
+
+#pickModal .wrapper h2{
+  font-size: 45px;
+  text-align: center;
+  padding: 20px;
+  color: #1d2845;
+}
+
+#pickModal .wrapper img{
+  height: 180px;
+  width: auto;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#pickModal .wrapper .input-box{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 30px 0;
+}
+
+#pickModal .input-box input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 2px solid #1d2845;
+  outline: none;
+  border-radius: 40px;
+  font-size: 18px;
+  color: #1d2845;
+  padding: 22px 45px 20px 20px;
+}
+
+#pickModal .input-box input::placeholder{
+  color: #1d2845;
+}
+
+#pickModal .wrapper .remember-forgot{
+  text-align: right;
+  font-size: 17.5px;
+  margin: -15px 10px;
+}
+
+#pickModal .remember-forgot a{
+  color: #1d2845;
+  text-decoration: underline;
+}
+
+#pickModal .wrapper .btn{
+  width: 100%;
+  height: 45px;
+  margin-top: 70px;
+  background: #1d2845;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.156);
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+#pickModal .wrapper .register-link{
+  font-size: 20px;
+  text-align: center;
+  margin: 20px 0 -4px;
+}
+
+#pickModal .wrapper .register-link p,
+#pickModal .wrapper .register-link span,
+#pickModal #question-mark{
+  color: #1d2845;
+}
+
+#pickModal .register-link p a{
+  color: #1d2845;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#pickModal .register-link p a:hover{
+  text-decoration: underline;
+}
