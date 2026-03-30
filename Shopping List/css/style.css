@@ -18,6 +18,7 @@ body{
   background-position: center;
   background-size: cover;
   height: 100vh;
+  width: 100%;
 
   font-family: 'Able Lead', serif;
 }
@@ -172,6 +173,9 @@ section {
   .receipt img {
     width: 200px;
   }
+  .item{
+    width: 5%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -191,9 +195,25 @@ section {
   padding-top: 14vh;
 }
 
-.basket {
+.basket-container {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.basket-container img.basket-bg {
+  width: auto;
+  height: 45vh;
+  display: block;
+  max-width: 100%;
+}
+
+/*.basket {
   top: 0;
-  position: relative; /* Essential for positioning the child relative to the container */
+  position: relative;
+  display: inline-block;
 }
 
 .basket img {
@@ -205,7 +225,7 @@ section {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-}
+}*/
 
 .receipt {
   top: 0;
@@ -233,4 +253,35 @@ section {
 .no-margin{
   padding: 0;
   margin: 0;
+}
+
+.item {
+  position: absolute;
+  width: 30%;
+  height: auto;
+}
+
+.eggs {
+  top: 8%;
+  right: 7%;
+}
+
+.sugar {
+  top: 15%;
+  left: 10%;
+}
+
+.milk {
+  top: 35%;
+  right: 10%;
+}
+
+.chicken {
+  top: 50%;
+  left: 12%;
+}
+
+.cherries {
+  bottom: 8%;
+  left: 35%;
 }
