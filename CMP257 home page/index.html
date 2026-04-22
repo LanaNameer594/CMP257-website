@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Cookbook</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" href="AbleLead-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <!--<script src="https://elfsightcdn.com/platform.js" async></script>-->
+</head>
+<body>
+  <!--<div class="elfsight-app-eb8ed8ea-fb02-4713-a2df-4e51bf9d25e9" data-elfsight-app-lazy id="musi"></div>-->
+
+  <section class="main">
+    <div class="fridge-scene">
+
+      <div class="text">
+        <h1 class="title-fridge">The Cookbook</h1>
+      </div>
+
+      <a href="recipes.html" class="nav-link recipes-link">
+        <img src="images/recipes_new.PNG" alt="Recipes" id="rec-img">
+      </a>
+
+      <a href="shopping-list.html" class="nav-link shopping-link">
+        <img src="images/shopping_new.PNG" alt="Shopping List" id="shop-img">
+      </a>
+
+      <!--<a href="#" class="nav-link calendar-link">
+        <img src="images/calendar_new.PNG" alt="Calendar" id="cal-img">
+      </a>-->
+
+      <button
+        class="nav-link random-link popup-trigger"
+        id="openPickerBtn"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="pickModal"
+      >
+        <img src="images/randomizer.png" alt="Pick for me" id="random-img">
+      </button>
+
+      <a href="profile.html" class="nav-link profile-link">
+        <img src="images/profile_new.PNG" alt="Profile" id="prof-img">
+      </a>
+    </div>
+  </section>
+  <div class="modal-overlay" id="pickModal" aria-hidden="true">
+    <div class="pick-modal" role="dialog" aria-modal="true" aria-labelledby="pickModalTitle">
+      <button class="close-modal" id="closePickerBtn" type="button" aria-label="Close Pick for me popup">
+        ×
+      </button>
+
+      <div class="pick-modal-content">
+        <div class="pick-left">
+          <h2 class="pickModalTitle">
+            <img src="images/Pick for Me Patch.png" alt="Pick for me">
+          </h2>
+          <p class="pick-subtitle">Choose your meal, mood, and key ingredients.</p>
+
+          <form id="pickForm" class="pick-form">
+            <div class="form-group">
+              <label for="mealType">Meal type</label>
+              <select id="mealType" name="mealType">
+                <option value="" id="bar-text">Select a meal</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="mood">Mood</label>
+              <select id="mood" name="mood">
+                <option value="" id="bar-text">Select a mood</option>
+                <option value="light">Light & fresh</option>
+                <option value="comforting">Comforting</option>
+                <option value="fancy">Fancy</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="ingredientInput">Key ingredients</label>
+              <div class="ingredient-entry">
+                <input type="text" id="ingredientInput" placeholder="Type an ingredient" aria-describedby="ingredientHelp">
+                <button type="button" id="addIngredientBtn">Add</button>
+              </div>
+              <p id="ingredientHelp" class="help-text">
+                Try things like chicken, tomato, egg, cheese, rice
+              </p>
+              <div id="ingredientTags" class="ingredient-tags" aria-live="polite"></div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="primary-btn">Pick for me</button>
+              <button type="button" id="resetBtn" class="secondary-btn">Reset</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="pick-right">
+          <h2 class="result-title">
+            <img src="images/Your Match Patch.png" alt="Your match">
+          </h2>
+
+          <div id="resultCard" class="result-card empty-state">
+            <p>Nothing picked yet. Let the cookbook decide!</p>
+          </div>
+
+          <div class="result-actions">
+            <button type="button" id="rerollBtn" class="secondary-btn" disabled>Pick again</button>
+            <button type="button" id="saveBtn" class="primary-btn" disabled>Save recipe</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  </body>
+</html>
