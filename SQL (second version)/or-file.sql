@@ -5,57 +5,54 @@ DROP TABLE IF EXISTS curated_recipes;
 CREATE TABLE curated_recipes AS
 WITH categorized AS (
     SELECT
-        recipe_id,
-        recipe_name,
-        rating,
-        cuisine_path,
-        ingredients,
+        r.recipe_id,
+        r.recipe_name,
+        r.rating,
+        r.cuisine_path,
 
         CASE
-            WHEN LOWER(cuisine_path) LIKE '%main dish%' THEN 'main dish'
-            WHEN LOWER(cuisine_path) LIKE '%side dish%' THEN 'side dish'
-            WHEN LOWER(cuisine_path) LIKE '%appetizer%' THEN 'appetizer'
-            WHEN LOWER(cuisine_path) LIKE '%dessert%' THEN 'dessert'
+            WHEN LOWER(r.cuisine_path) LIKE '%main dish%' THEN 'main dish'
+            WHEN LOWER(r.cuisine_path) LIKE '%side dish%' THEN 'side dish'
+            WHEN LOWER(r.cuisine_path) LIKE '%appetizer%' THEN 'appetizer'
+            WHEN LOWER(r.cuisine_path) LIKE '%dessert%' THEN 'dessert'
         END AS course,
 
      
         CASE
-            WHEN LOWER(recipe_name) LIKE '%chicken%' OR LOWER(ingredients) LIKE '%chicken%' THEN 'chicken'
-            WHEN LOWER(recipe_name) LIKE '%beef%' OR LOWER(ingredients) LIKE '%beef%' THEN 'beef'
-            WHEN LOWER(recipe_name) LIKE '%fish%' OR LOWER(ingredients) LIKE '%fish%' THEN 'fish'
-            WHEN LOWER(recipe_name) LIKE '%pasta%' OR LOWER(ingredients) LIKE '%pasta%' THEN 'pasta'
-            WHEN LOWER(recipe_name) LIKE '%rice%' OR LOWER(ingredients) LIKE '%rice%' THEN 'rice'
-            WHEN LOWER(recipe_name) LIKE '%potato%' OR LOWER(ingredients) LIKE '%potato%' THEN 'potato'
-            WHEN LOWER(recipe_name) LIKE '%cheese%' OR LOWER(ingredients) LIKE '%cheese%' THEN 'cheese'
-            WHEN LOWER(recipe_name) LIKE '%chocolate%' OR LOWER(ingredients) LIKE '%chocolate%' THEN 'chocolate'
-            WHEN LOWER(recipe_name) LIKE '%apple%' OR LOWER(ingredients) LIKE '%apple%' THEN 'apple'
-            ELSE CONCAT('other-', recipe_id)
+            WHEN LOWER(r.recipe_name) LIKE '%chicken%' OR EXISTS (SELECT 1 FROM recipe_ingredients ir JOIN ingredients i ON ir.ingredient_id = i.ingredient_id WHERE ir.recipe_id = r.recipe_id AND i.name LIKE '%chicken%') THEN 'chicken'
+            WHEN LOWER(r.recipe_name) LIKE '%beef%'    OR EXISTS (SELECT 1 FROM recipe_ingredients ir JOIN ingredients i ON ir.ingredient_id = i.ingredient_id WHERE ir.recipe_id = r.recipe_id AND i.name LIKE '%beef%')    THEN 'beef'
+            WHEN LOWER(r.recipe_name) LIKE '%fish%'    OR EXISTS (SELECT 1 FROM recipe_ingredients ir JOIN ingredients i ON ir.ingredient_id = i.ingredient_id WHERE ir.recipe_id = r.recipe_id AND i.name LIKE '%fish%')    THEN 'fish'
+            WHEN LOWER(r.recipe_name) LIKE '%pasta%'   OR EXISTS (SELECT 1 FROM recipe_ingredients ir JOIN ingredients i ON ir.ingredient_id = i.ingredient_id WHERE ir.recipe_id = r.recipe_id AND i.name LIKE '%pasta%')   THEN 'pasta'
+            WHEN LOWER(r.recipe_name) LIKE '%rice%'    OR EXISTS (SELECT 1 FROM recipe_ingredients ir JOIN ingredients i ON ir.ingredient_id = i.ingredient_id WHERE ir.recipe_id = r.recipe_id AND i.name LIKE '%rice%')    THEN 'rice'
+            WHEN LOWER(r.recipe_name) LIKE '%potato%'  OR EXISTS (SELECT 1 FROM recipe_ingredients ir JOIN ingredients i ON ir.ingredient_id = i.ingredient_id WHERE ir.recipe_id = r.recipe_id AND i.name LIKE '%potato%')  THEN 'potato'
+            WHEN LOWER(r.recipe_name) LIKE '%cheese%'  OR EXISTS (SELECT 1 FROM recipe_ingredients ir JOIN ingredients i ON ir.ingredient_id = i.ingredient_id WHERE ir.recipe_id = r.recipe_id AND i.name LIKE '%cheese%')  THEN 'cheese'
+            WHEN LOWER(r.recipe_name) LIKE '%chocolate%' OR EXISTS (SELECT 1 FROM recipe_ingredients ir JOIN ingredients i ON ir.ingredient_id = i.ingredient_id WHERE ir.recipe_id = r.recipe_id AND i.name LIKE '%chocolate%') THEN 'chocolate'
+            WHEN LOWER(r.recipe_name) LIKE '%apple%'   OR EXISTS (SELECT 1 FROM recipe_ingredients ir JOIN ingredients i ON ir.ingredient_id = i.ingredient_id WHERE ir.recipe_id = r.recipe_id AND i.name LIKE '%apple%')   THEN 'apple'
+            ELSE CONCAT('other-', r.recipe_id)
         END AS ingredient_family,
 
        
         CASE
-            WHEN LOWER(recipe_name) LIKE '%chicken%' OR LOWER(ingredients) LIKE '%chicken%' THEN 3
-            WHEN LOWER(recipe_name) LIKE '%beef%' OR LOWER(ingredients) LIKE '%beef%' THEN 2
+            WHEN LOWER(r.recipe_name) LIKE '%chicken%' OR EXISTS (SELECT 1 FROM recipe_ingredients ir JOIN ingredients i ON ir.ingredient_id = i.ingredient_id WHERE ir.recipe_id = r.recipe_id AND i.name LIKE '%chicken%') THEN 3
+            WHEN LOWER(r.recipe_name) LIKE '%beef%'    OR EXISTS (SELECT 1 FROM recipe_ingredients ir JOIN ingredients i ON ir.ingredient_id = i.ingredient_id WHERE ir.recipe_id = r.recipe_id AND i.name LIKE '%beef%')    THEN 2
             ELSE 0
         END AS protein_priority
 
-    FROM recipes
-    WHERE rating >= 4.5
-      AND ingredients IS NOT NULL
-
-    
-      AND LOWER(recipe_name) NOT LIKE '%pork%'
-      AND LOWER(ingredients) NOT LIKE '%pork%'
-
-      -- ❌ also remove fig-heavy bias
-      AND LOWER(recipe_name) NOT LIKE '%fig%'
-      AND LOWER(ingredients) NOT LIKE '%fig%'
-
+    FROM recipes r
+    WHERE r.rating >= 4.5
+      AND NOT EXISTS (
+          SELECT 1 FROM recipe_ingredients ir 
+          JOIN ingredients i ON ir.ingredient_id = i.ingredient_id
+          WHERE ir.recipe_id = r.recipe_id 
+          AND (i.name LIKE '%pork%' OR i.name LIKE '%fig%')
+      )
+      AND LOWER(r.recipe_name) NOT LIKE '%pork%'
+      AND LOWER(r.recipe_name) NOT LIKE '%fig%'
       AND (
-          LOWER(cuisine_path) LIKE '%main dish%'
-          OR LOWER(cuisine_path) LIKE '%side dish%'
-          OR LOWER(cuisine_path) LIKE '%appetizer%'
-          OR LOWER(cuisine_path) LIKE '%dessert%'
+          LOWER(r.cuisine_path) LIKE '%main dish%'
+          OR LOWER(r.cuisine_path) LIKE '%side dish%'
+          OR LOWER(r.cuisine_path) LIKE '%appetizer%'
+          OR LOWER(r.cuisine_path) LIKE '%dessert%'
       )
 ),
 
