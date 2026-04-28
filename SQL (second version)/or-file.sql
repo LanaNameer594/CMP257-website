@@ -86,3 +86,4 @@ SELECT r.recipe_id, r.recipe_name, r.rating, r.cuisine_path
 FROM recipes r
 JOIN curated_recipes c ON r.recipe_id = c.recipe_id
 ORDER BY r.cuisine_path, r.rating DESC;
+

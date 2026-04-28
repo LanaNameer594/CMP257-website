@@ -47,6 +47,11 @@ categorized AS (
             WHEN LOWER(recipe_name) LIKE '%cheese%' OR LOWER(ingredients) LIKE '%cheese%' THEN 'cheese'
             WHEN LOWER(recipe_name) LIKE '%chocolate%' OR LOWER(ingredients) LIKE '%chocolate%' THEN 'chocolate'
             WHEN LOWER(recipe_name) LIKE '%apple%' OR LOWER(ingredients) LIKE '%apple%' THEN 'apple'
+            WHEN LOWER(recipe_name) LIKE '%dates%' OR LOWER(ingredients) LIKE '%dates%' THEN 'dates'
+            WHEN LOWER(recipe_name) LIKE '%avocado%' OR LOWER(ingredients) LIKE '%avocado%' THEN 'avocado'
+            WHEN LOWER(recipe_name) LIKE '%apricot%' OR LOWER(ingredients) LIKE '%apricot%' THEN 'apricot'
+            WHEN LOWER(recipe_name) LIKE '%nectarines%' OR LOWER(ingredients) LIKE '%nectarines%' THEN 'nectarines'
+            WHEN LOWER(recipe_name) LIKE '%pomegranate%' OR LOWER(ingredients) LIKE '%pomegranate%' THEN 'pomegranate'
             ELSE CONCAT('other-', recipe_id)
         END AS ingredient_family,
 
@@ -71,16 +76,6 @@ categorized AS (
       )
 ),
 
-family_limited AS (
-    SELECT
-        *,
-        ROW_NUMBER() OVER (
-            PARTITION BY course, ingredient_family
-            ORDER BY (CAST(rating AS DECIMAL(3,1)) + protein_priority) DESC
-        ) AS ingredient_family_rank
-    FROM categorized
-),
-
 ranked AS (
     SELECT
         *,
@@ -88,8 +83,7 @@ ranked AS (
             PARTITION BY course
             ORDER BY (CAST(rating AS DECIMAL(3,1)) + protein_priority) DESC
         ) AS course_rank
-    FROM family_limited
-    WHERE ingredient_family_rank = 1
+    FROM categorized
 )
 
 SELECT
