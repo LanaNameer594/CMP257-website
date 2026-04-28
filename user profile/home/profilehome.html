@@ -19,33 +19,71 @@
                         <div class="navbar-nav ms-auto">
                             <a class="nav-link nav_style" href="recipes.html">Recipes</a>
                             <a class="nav-link nav_style" href="shopping_list.html">Shopping List</a>
-                            <a class="nav-link nav_style" href="profile.html">My Profile</a>
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle nav_style" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Favorites</a></li>
+                                        <li><a class="dropdown-item" href="#">Collections</a></li>
+                                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                                    </ul>
+                            </div>
+                            <button class="nav-link nav_style" id="open-btn">Login</button> 
+                                <div id="pickModal" class="login-modal">
+                                    <div class="modal-content">
+                                    <button class="modal-close" type="button">×</button>
+                                    <!--whatever form content you have-->
+                                    <div class="wrapper">
+                                        <form action="">
+                                            <img src="login.png">
+                                            <div class="input-box">
+                                                <input class="username" type="text" placeholder="Username" required>
+                                            </div>
+                                            <div class="input-box">
+                                                <input type="password" placeholder="Password" required>
+                                                
+                                            </div>
+                                            <div class="remember-forgot">
+                                                <a href="#">Forgot password<span id="question-mark">?</span></a>
+                                            </div>
+                                            <button type="submit" class="btn">Sign In</button>
+                                            <div class="register-link">
+                                                <p>
+                                                    Don't have an account<span id="question-mark">?</span>
+                                                    <a href="#">Register</a>
+                                                </p>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </nav>
         </header>
+
         <div class="profile">
-            <img src="dragon.png" alt="Profile Picture">
-            <h1>Welcome<span>,</span> User<span>!</span></h1>
+            <img src="user.png" alt="Profile Picture">
+            <h1>Welcome, User!</h1>
         </div>
+
         <nav class="choices">
             <div class="container text-center">
                 <div class="row">
                     <div class="col">
-                        <a href="#">
+                        <a href="favorites/favorites.html">
                             <img src="lemon.png" alt="favorites">
                             <h1>Favorites</h1>
                         </a>
                     </div>
                     <div class="col">
-                        <a href="#">
+                        <a href="collections/collections.html">
                             <img src="strawberry.png" alt="favorites">
                             <h1>Collections</h1>
                         </a>
                     </div>
                     <div class="col">
-                        <a href="#">
+                        <a href="settings/settings.html">
                             <img src="blueberry.png" alt="favorites">
                             <h1>Settings</h1>
                         </a>

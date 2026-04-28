@@ -1,13 +1,13 @@
 *{
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Able Lead', serif;
+    font-family: 'Ramillas', serif;
     color:rgb(222, 217, 209);
 }
 
 @font-face {
-  font-family: 'Able Lead';
-  src: url('fonts/Able_Lead.ttf');
+  font-family: 'Ramillas';
+  src: url('fonts/TT\ Ramillas\ Trial\ Regular.ttf');
 }
 
 @font-face {
@@ -16,7 +16,9 @@
 }
 
 body{
-    background: #ffe99e
+    /* background:#133951; */
+    background-image: url(Background.png);
+    height:900px;
 }
 
 .title_font{
@@ -48,6 +50,144 @@ body{
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2819, 57, 81, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
+#pickModal{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#pickModal.active{
+  display: flex;
+}
+
+#open-btn{
+  background: transparent;
+  color:#133951;
+  border:none;
+}
+
+#pickModal .modal-content{
+  position: relative;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  width: auto;
+  max-width: 90%;
+}
+
+#pickModal .modal-close{
+  position: absolute;
+  right:25px;
+  top: -50px;
+  background: transparent;
+  border: none;
+  color: #1d2845;
+  font-size: 150px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+#pickModal .wrapper{
+  width: 600px;
+  height: 600px;
+  background: rgb(222, 217, 209);
+  border: 2px solid #1d2845a5;
+  color: #1d2845;
+  box-shadow: 0 0 10px rgb(175, 171, 171);
+  border-radius: 10px;
+  padding: 30px 40px;
+}
+
+#pickModal .wrapper h2{
+  font-size: 45px;
+  text-align: center;
+  padding: 20px;
+  color: #1d2845;
+}
+
+#pickModal .wrapper img{
+  height: 180px;
+  width: auto;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#pickModal .wrapper .input-box{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 30px 0;
+}
+
+#pickModal .input-box input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 2px solid #1d2845;
+  outline: none;
+  border-radius: 40px;
+  font-size: 18px;
+  color: #1d2845;
+  padding: 22px 45px 20px 20px;
+}
+
+#pickModal .input-box input::placeholder{
+  color: #1d2845;
+}
+
+#pickModal .wrapper .remember-forgot{
+  text-align: right;
+  font-size: 17.5px;
+  margin: -15px 10px;
+}
+
+#pickModal .remember-forgot a{
+  color: #1d2845;
+  text-decoration: underline;
+}
+
+#pickModal .wrapper .btn{
+  width: 100%;
+  height: 45px;
+  margin-top: 70px;
+  background: #1d2845;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.156);
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+#pickModal .wrapper .register-link{
+  font-size: 20px;
+  text-align: center;
+  margin: 20px 0 -4px;
+}
+
+#pickModal .wrapper .register-link p,
+#pickModal .wrapper .register-link span,
+#pickModal #question-mark{
+  color: #1d2845;
+}
+
+#pickModal .register-link p a{
+  color: #1d2845;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#pickModal .register-link p a:hover{
+  text-decoration: underline;
+}
+
 .profile img {
     margin-top: 40px;
     display: block;
@@ -55,9 +195,6 @@ body{
     margin-right: auto;
     width: 200px;
     height: 200px;
-    border-radius: 50%;
-    border: 2px solid rgba(149, 141, 141, 0.637);
-    
 }
 
 .profile h1{
@@ -65,16 +202,11 @@ body{
     font-weight: 600;
     text-align: center;
     font-size: 60px;
-    margin-top: 20px;
-}
-
-.profile h1 span{
-  font-family: 'Times New Roman', Times, serif;
-  color:#133951;
+    margin-top: -5px;
 }
 
 .choices{
-    margin-top:50px;
+    margin-top:35px;
     font-size: 25px;
 }
 
@@ -88,5 +220,5 @@ body{
 }
 
 .col img{
-  width:75%;
+  width:58%;
 }
