@@ -36,7 +36,9 @@ CREATE TABLE saved_recipes (
 
 CREATE TABLE ingredients (
   ingredient_id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL UNIQUE
+  name VARCHAR(255) NOT NULL,
+  unit VARCHAR(50) NOT NULL,
+  CONSTRAINT unique_name_unit UNIQUE (name, unit)
 );
 
 CREATE TABLE shopping_list (
@@ -89,33 +91,29 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
+INSERT IGNORE INTO ingredients (name, unit) VALUES
+('rolled oats', 'g'),
+('pumpkin seeds', 'g'),
+('walnuts', 'g'),
+('pecans', 'g'),
+('pitted Medjool dates', 'pieces'),
+('brown rice syrup', 'g'),
+('mini chocolate chips', 'g'),
+('shredded coconut', 'g'),
+('raisins', 'g'),
+('sunflower seeds', 'g');
 
-('rolled oats'), ('pumpkin seeds'), ('walnuts'), ('pecans'), ('pitted Medjool dates'), 
-
-('brown rice syrup'), ('mini chocolate chips'), ('shredded coconut'), ('raisins'), ('sunflower seeds');
-
-INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='rolled oats'), '90'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pumpkin seeds'), '65'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='walnuts'), '60'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pecans'), '65'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pitted Medjool dates'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown rice syrup'), '160'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='mini chocolate chips'), '175'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shredded coconut'), '45'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='raisins'), '75'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='sunflower seeds'), '35');
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='rolled oats' AND unit='g'), '90'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pumpkin seeds' AND unit='g'), '65'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='walnuts' AND unit='g'), '60'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pecans' AND unit='g'), '65'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pitted Medjool dates' AND unit='pieces'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown rice syrup' AND unit='g'), '160'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='mini chocolate chips' AND unit='g'), '175'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shredded coconut' AND unit='g'), '45'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='raisins' AND unit='g'), '75'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='sunflower seeds' AND unit='g'), '35');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -149,37 +147,23 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
+INSERT IGNORE INTO ingredients (name, unit) VALUES
+('pecans', 'g'),
+('rolled oats', 'g'),
+('pitted Medjool dates', 'pieces'),
+('ground cinnamon', 'g'),
+('salt', 'g'),
+('vanilla extract', 'ml'),
+('maple syrup', 'ml');
 
-('pecans'), 
-
-('rolled oats'), 
-
-('pitted Medjool dates'), 
-
-('ground cinnamon'), 
-
-('salt'), 
-
-('vanilla extract'), 
-
-('maple syrup');
-
-INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pecans'), '100'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='rolled oats'), '30'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pitted Medjool dates'), '175'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cinnamon'), '0.6'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '1.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vanilla extract'), '1.25'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='maple syrup'), '15');
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pecans' AND unit='g'), '100'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='rolled oats' AND unit='g'), '30'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pitted Medjool dates' AND unit='pieces'), '7'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cinnamon' AND unit='g'), '0.6'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '1.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vanilla extract' AND unit='ml'), '1.25'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='maple syrup' AND unit='ml'), '15');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -213,54 +197,31 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
+INSERT IGNORE INTO ingredients (name, unit) VALUES
+('fresh hot chile peppers', 'pieces'),
+('onion', 'pieces'),
+('pitted Medjool dates', 'pieces'),
+('fresh basil leaves', 'pieces'),
+('fresh parsley', 'g'),
+('roma tomatoes', 'piece'),
+('beef bouillon powder', 'g'),
+('garlic cloves', 'pieces'),
+('vegetable oil', 'ml'),
+('salt', 'g'),
+('lemon juice', 'ml');
 
-('fresh hot chile peppers'), 
-
-('onion'), 
-
-('pitted Medjool dates'), 
-
-('fresh basil leaves'), 
-
-('fresh parsley'), 
-
-('roma tomatoes'), 
-
-('beef bouillon powder'), 
-
-('garlic cloves'), 
-
-('vegetable oil'), 
-
-('salt'), 
-
-('lemon juice');
-
-INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh hot chile peppers'), '10'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pitted Medjool dates'), '45'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh basil leaves'), '6'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh parsley'), '6'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='roma tomatoes'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='beef bouillon powder'), '30'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='garlic cloves'), '4'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vegetable oil'), '120'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice'), '5');
-
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh hot chile peppers' AND unit='pieces'), '10'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion' AND unit='pieces'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pitted Medjool dates' AND unit='pieces'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh basil leaves' AND unit='pieces'), '6'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh parsley' AND unit='g'), '3'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='roma tomatoes' AND unit='piece'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='beef bouillon powder' AND unit='g'), '30'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='garlic cloves' AND unit='pieces'), '4'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vegetable oil' AND unit='ml'), '120'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice' AND unit='ml'), '5');
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
 VALUES (
@@ -293,49 +254,29 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
+INSERT IGNORE INTO ingredients (name, unit) VALUES
+('pitted Medjool dates', 'pieces'),
+('raw cashews', 'g'),
+('almonds', 'g'),
+('unsweetened cocoa powder', 'g'),
+('coconut oil', 'ml'),
+('shredded coconut', 'g'),
+('vanilla extract', 'ml'),
+('cold espresso', 'ml'),
+('salt', 'g'),
+('cayenne pepper', 'g');
 
-('pitted Medjool dates'), 
-
-('raw cashews'), 
-
-('almonds'), 
-
-('unsweetened cocoa powder'), 
-
-('coconut oil'), 
-
-('shredded coconut'), 
-
-('vanilla extract'), 
-
-('cold espresso'), 
-
-('salt'), 
-
-('cayenne pepper');
-
-INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pitted Medjool dates'), '350'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='raw cashews'), '260'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='almonds'), '140'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='unsweetened cocoa powder'), '60'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='coconut oil'), '30'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shredded coconut'), '45'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vanilla extract'), '10'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cold espresso'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '3'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cayenne pepper'), '0.1');
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pitted Medjool dates' AND unit='pieces'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='raw cashews' AND unit='g'), '260'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='almonds' AND unit='g'), '140'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='unsweetened cocoa powder' AND unit='g'), '60'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='coconut oil' AND unit='ml'), '30'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shredded coconut' AND unit='g'), '45'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vanilla extract' AND unit='ml'), '10'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cold espresso' AND unit='ml'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '3'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cayenne pepper' AND unit='g'), '0.1');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -369,21 +310,15 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
+INSERT IGNORE INTO ingredients (name, unit) VALUES
+('fresh cherries', 'g'),
+('water', 'ml'),
+('white sugar', 'g');
 
-('fresh cherries'), 
-
-('water'), 
-
-('white sugar');
-
-INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh cherries'), '907'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water'), '946'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '150');
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh cherries' AND unit='g'), '907'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water' AND unit='ml'), '946'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '150');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -417,37 +352,23 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
+INSERT IGNORE INTO ingredients (name, unit) VALUES
+('potatoes', 'g'),
+('olive oil', 'ml'),
+('lemons', 'pieces'),
+('salt', 'g'),
+('dried oregano', 'g'),
+('ground black pepper', 'g'),
+('chicken broth', 'ml');
 
-('potatoes'), 
-
-('olive oil'), 
-
-('lemons'), 
-
-('salt'), 
-
-('dried oregano'), 
-
-('ground black pepper'), 
-
-('chicken broth');
-
-INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='potatoes'), '1360'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil'), '80'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemons'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '12'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='dried oregano'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chicken broth'), '710');
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='potatoes' AND unit='g'), '1360'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil' AND unit='ml'), '80'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemons' AND unit='pieces'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '12'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='dried oregano' AND unit='g'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chicken broth' AND unit='ml'), '710');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -481,53 +402,31 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
+INSERT IGNORE INTO ingredients (name, unit) VALUES
+('olive oil', 'ml'),
+('garlic cloves', 'pieces'),
+('lemon juice', 'ml'),
+('brown sugar', 'g'),
+('dried oregano', 'g'),
+('dried thyme', 'g'),
+('salt', 'g'),
+('ground black pepper', 'g'),
+('salmon fillet', 'g'),
+('fresh parsley', 'g'),
+('lemons', 'pieces');
 
-('olive oil'), 
-
-('garlic cloves'), 
-
-('lemon juice'), 
-
-('brown sugar'), 
-
-('dried oregano'), 
-
-('dried thyme'), 
-
-('salt'), 
-
-('ground black pepper'), 
-
-('salmon fillet'), 
-
-('fresh parsley'), 
-
-('lemons');
-
-INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil'), '125'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='garlic cloves'), '5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice'), '37.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar'), '12.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='dried oregano'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='dried thyme'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salmon fillet'), '1360'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh parsley'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemons'), '1');
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil' AND unit='ml'), '125'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='garlic cloves' AND unit='pieces'), '5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice' AND unit='ml'), '37.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar' AND unit='g'), '12.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='dried oregano' AND unit='g'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='dried thyme' AND unit='g'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salmon fillet' AND unit='g'), '1360'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh parsley' AND unit='g'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemons' AND unit='pieces'), '1');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -561,53 +460,31 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
+INSERT IGNORE INTO ingredients (name, unit) VALUES
+('cooking spray', 'ml'),
+('white sugar', 'g'),
+('butter', 'g'),
+('all-purpose flour', 'g'),
+('almonds', 'g'),
+('cream cheese', 'g'),
+('eggs', 'pieces'),
+('vanilla extract', 'ml'),
+('pears', 'pieces'),
+('ground cardamom', 'g'),
+('ground cinnamon', 'g');
 
-('cooking spray'), 
-
-('white sugar'), 
-
-('butter'), 
-
-('all-purpose flour'), 
-
-('almonds'), 
-
-('cream cheese'), 
-
-('eggs'), 
-
-('vanilla extract'), 
-
-('pears'), 
-
-('ground cardamom'), 
-
-('ground cinnamon');
-
-INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cooking spray'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '150'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter'), '42'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='all-purpose flour'), '94'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='almonds'), '40'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cream cheese'), '226'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vanilla extract'), '2.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pears'), '300'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cardamom'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cinnamon'), '1');
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cooking spray' AND unit='ml'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '150'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter' AND unit='g'), '42'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='all-purpose flour' AND unit='g'), '94'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='almonds' AND unit='g'), '40'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cream cheese' AND unit='g'), '226'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs' AND unit='pieces'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vanilla extract' AND unit='ml'), '2.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pears' AND unit='pieces'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cardamom' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cinnamon' AND unit='g'), '1');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -641,41 +518,25 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
+INSERT IGNORE INTO ingredients (name, unit) VALUES
+('penne pasta', 'g'),
+('butter', 'g'),
+('grated Parmesan cheese', 'g'),
+('crumbled Gorgonzola cheese', 'g'),
+('heavy whipping cream', 'ml'),
+('pears', 'pieces'),
+('walnuts', 'g'),
+('ground black pepper', 'g');
 
-('penne pasta'), 
-
-('butter'), 
-
-('grated Parmesan cheese'), 
-
-('crumbled Gorgonzola cheese'), 
-
-('heavy whipping cream'), 
-
-('pears'), 
-
-('walnuts'), 
-
-('ground black pepper');
-
-INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='penne pasta'), '255'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter'), '30'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='grated Parmesan cheese'), '50'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='crumbled Gorgonzola cheese'), '42'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='heavy whipping cream'), '120'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pears'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='walnuts'), '60'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper'), '1');
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='penne pasta' AND unit='g'), '255'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter' AND unit='g'), '30'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='grated Parmesan cheese' AND unit='g'), '50'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='crumbled Gorgonzola cheese' AND unit='g'), '42'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='heavy whipping cream' AND unit='ml'), '120'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pears' AND unit='pieces'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='walnuts' AND unit='g'), '60'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper' AND unit='g'), '1');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -709,21 +570,15 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
+INSERT IGNORE INTO ingredients (name, unit) VALUES
+('plums', 'g'),
+('water', 'ml'),
+('white sugar', 'g');
 
-('plums'), 
-
-('water'), 
-
-('white sugar');
-
-INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='plums'), '2041'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water'), '60'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '200');
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='plums' AND unit='g'), '2041'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water' AND unit='ml'), '60'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '200');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -757,33 +612,21 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('pecans'), 
-
-('stewed prunes'), 
-
-('white sugar'), 
-
-('ground cinnamon'), 
-
-('ground cloves'), 
-
-('lime juice');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('pecans', 'g'), 
+('stewed prunes', 'g'), 
+('white sugar', 'g'), 
+('ground cinnamon', 'g'), 
+('ground cloves', 'g'), 
+('lime juice', 'mL');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pecans'), '110'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='stewed prunes'), '454'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '25'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cinnamon'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cloves'), '0.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lime juice'), '15');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pecans' AND unit='g'), '110'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='stewed prunes' AND unit='g'), '454'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '25'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cinnamon' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cloves' AND unit='g'), '0.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lime juice' AND unit='mL'), '15');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -817,53 +660,31 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('olive oil'), 
-
-('onion'), 
-
-('long-grain rice'), 
-
-('vegetable broth'), 
-
-('saffron threads'), 
-
-('ground allspice'), 
-
-('unsalted pistachios'), 
-
-('butter'), 
-
-('pomegranate seeds'), 
-
-('salt'), 
-
-('ground black pepper');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('olive oil', 'mL'), 
+('onion', 'pieces'), 
+('long-grain rice', 'g'), 
+('vegetable broth', 'mL'), 
+('saffron threads', 'g'), 
+('ground allspice', 'g'), 
+('unsalted pistachios', 'g'), 
+('butter', 'g'), 
+('pomegranate seeds', 'g'), 
+('salt', 'g'), 
+('ground black pepper', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil'), '30'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='long-grain rice'), '185'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vegetable broth'), '530'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='saffron threads'), '0.1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground allspice'), '0.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='unsalted pistachios'), '28'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter'), '14'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pomegranate seeds'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper'), '1');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil' AND unit='mL'), '30'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion' AND unit='pieces'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='long-grain rice' AND unit='g'), '185'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vegetable broth' AND unit='mL'), '530'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='saffron threads' AND unit='g'), '0.1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground allspice' AND unit='g'), '0.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='unsalted pistachios' AND unit='g'), '28'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter' AND unit='g'), '14'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pomegranate seeds' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper' AND unit='g'), '1');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -897,17 +718,13 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('pomegranate juice'), 
-
-('white sugar');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('pomegranate juice', 'mL'), 
+('white sugar', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pomegranate juice'), '946'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '200');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pomegranate juice' AND unit='mL'), '946'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '200');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -941,33 +758,21 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('champagne vinegar'), 
-
-('pomegranate juice'), 
-
-('shallot'), 
-
-('ground black pepper'), 
-
-('white sugar'), 
-
-('pomegranate seeds');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('champagne vinegar', 'mL'), 
+('pomegranate juice', 'mL'), 
+('shallot', 'piece'), 
+('ground black pepper', 'g'), 
+('white sugar', 'g'), 
+('pomegranate seeds', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='champagne vinegar'), '45'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pomegranate juice'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shallot'), '0.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '0.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pomegranate seeds'), '10');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='champagne vinegar' AND unit='mL'), '45'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pomegranate juice' AND unit='mL'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shallot' AND unit='piece'), '0.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '0.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pomegranate seeds' AND unit='g'), '10');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1001,33 +806,21 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('precooked 9-inch focaccia flatbread'), 
-
-('persimmon'), 
-
-('olive oil'), 
-
-('salt'), 
-
-('fresh rosemary sprigs'), 
-
-('burrata cheese');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('precooked 9-inch focaccia flatbread', 'piece'), 
+('persimmon', 'piece'), 
+('olive oil', 'mL'), 
+('salt', 'g'), 
+('fresh rosemary sprigs', 'piece'), 
+('burrata cheese', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='precooked 9-inch focaccia flatbread'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='persimmon'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil'), '20'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '3'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh rosemary sprigs'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='burrata cheese'), '115');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='precooked 9-inch focaccia flatbread' AND unit='piece'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='persimmon' AND unit='piece'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil' AND unit='mL'), '20'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '3'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh rosemary sprigs' AND unit='piece'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='burrata cheese' AND unit='g'), '115');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1061,33 +854,21 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('olive oil'), 
-
-('pecans'), 
-
-('pitted Medjool dates'), 
-
-('agave nectar'), 
-
-('persimmon'), 
-
-('ground cinnamon');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('olive oil', 'mL'), 
+('pecans', 'g'), 
+('pitted Medjool dates', 'pieces'), 
+('agave nectar', 'mL'), 
+('persimmon', 'piece'), 
+('ground cinnamon', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil'), '2.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pecans'), '330'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pitted Medjool dates'), '20'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='agave nectar'), '85'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='persimmon'), '6'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cinnamon'), '2');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil' AND unit='mL'), '2.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pecans' AND unit='g'), '330'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pitted Medjool dates' AND unit='pieces'), '20'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='agave nectar' AND unit='mL'), '85'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='persimmon' AND unit='piece'), '6'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cinnamon' AND unit='g'), '2');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1121,45 +902,37 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('all-purpose flour'), ('butter'), ('white sugar'), ('cream cheese'), 
-
-('mascarpone cheese'), ('vanilla extract'), ('ground nutmeg'), 
-
-('ground cinnamon'), ('strawberries'), ('blackberries'), 
-
-('kiwis'), ('cornstarch'), ('water'), ('lemon juice');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('all-purpose flour', 'g'), 
+('butter', 'g'), 
+('white sugar', 'g'), 
+('cream cheese', 'g'), 
+('mascarpone cheese', 'g'), 
+('vanilla extract', 'mL'), 
+('ground nutmeg', 'g'), 
+('ground cinnamon', 'g'), 
+('strawberries', 'g'), 
+('blackberries', 'g'), 
+('kiwis', 'g'), 
+('cornstarch', 'g'), 
+('water', 'mL'), 
+('lemon juice', 'mL');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='all-purpose flour'), '250'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter'), '225'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '250'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cream cheese'), '225'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='mascarpone cheese'), '225'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vanilla extract'), '5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground nutmeg'), '0.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cinnamon'), '0.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='strawberries'), '300'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='blackberries'), '150'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='kiwis'), '3'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cornstarch'), '10'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water'), '120'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice'), '15');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='all-purpose flour' AND unit='g'), '250'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter' AND unit='g'), '225'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '250'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cream cheese' AND unit='g'), '225'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='mascarpone cheese' AND unit='g'), '225'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vanilla extract' AND unit='mL'), '5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground nutmeg' AND unit='g'), '0.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cinnamon' AND unit='g'), '0.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='strawberries' AND unit='g'), '300'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='blackberries' AND unit='g'), '150'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='kiwis' AND unit='g'), '230'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cornstarch' AND unit='g'), '10'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water' AND unit='mL'), '120'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice' AND unit='mL'), '15');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1193,33 +966,21 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('lemon juice'), 
-
-('white sugar'), 
-
-('strawberries'), 
-
-('crushed pineapple'), 
-
-('kiwis'), 
-
-('naval orange');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('lemon juice', 'mL'), 
+('white sugar', 'g'), 
+('strawberries', 'g'), 
+('crushed pineapple', 'g'), 
+('kiwis', 'g'), 
+('naval orange', 'piece');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '6'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='strawberries'), '150'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='crushed pineapple'), '225'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='kiwis'), '3'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='naval orange'), '1');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice' AND unit='mL'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '6'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='strawberries' AND unit='g'), '150'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='crushed pineapple' AND unit='g'), '225'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='kiwis' AND unit='g'), '230'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='naval orange' AND unit='piece'), '1');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1253,29 +1014,19 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('low-fat vanilla Greek yogurt'), 
-
-('kiwis'), 
-
-('macadamia nuts'), 
-
-('agave nectar'), 
-
-('fresh mint');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('low-fat vanilla Greek yogurt', 'g'), 
+('kiwis', 'g'), 
+('macadamia nuts', 'g'), 
+('agave nectar', 'mL'), 
+('fresh mint', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='low-fat vanilla Greek yogurt'), '150'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='kiwis'), '90'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='macadamia nuts'), '18'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='agave nectar'), '7'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh mint'), '1');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='low-fat vanilla Greek yogurt' AND unit='g'), '150'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='kiwis' AND unit='g'), '90'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='macadamia nuts' AND unit='g'), '18'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='agave nectar' AND unit='mL'), '7'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh mint' AND unit='g'), '1');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1309,47 +1060,39 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('olive oil'), ('onion'), ('mangoes'), ('fresh peach'), 
-
-('honey'), ('habanero peppers'), ('yellow mustard'), ('salt'), 
-
-('paprika'), ('ground white pepper'), ('ground cumin'), 
-
-('ground allspice'), ('brown sugar'), ('white vinegar'), ('apple cider vinegar');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('olive oil', 'mL'), 
+('onion', 'pieces'), 
+('mangoes', 'piece'), 
+('fresh peach', 'piece'), 
+('honey', 'mL'), 
+('habanero peppers', 'piece'), 
+('yellow mustard', 'mL'), 
+('salt', 'g'), 
+('paprika', 'g'), 
+('ground white pepper', 'g'), 
+('ground cumin', 'g'), 
+('ground allspice', 'g'), 
+('brown sugar', 'g'), 
+('white vinegar', 'mL'), 
+('apple cider vinegar', 'mL');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil'), '30'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='mangoes'), '7'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh peach'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='honey'), '115'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='habanero peppers'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='yellow mustard'), '60'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '45'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='paprika'), '18'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground white pepper'), '10'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cumin'), '6'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground allspice'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar'), '50'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white vinegar'), '355'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apple cider vinegar'), '120');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil' AND unit='mL'), '30'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion' AND unit='pieces'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='mangoes' AND unit='piece'), '7'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh peach' AND unit='piece'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='honey' AND unit='mL'), '115'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='habanero peppers' AND unit='piece'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='yellow mustard' AND unit='mL'), '60'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '45'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='paprika' AND unit='g'), '18'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground white pepper' AND unit='g'), '10'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground cumin' AND unit='g'), '6'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground allspice' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar' AND unit='g'), '50'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white vinegar' AND unit='mL'), '355'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apple cider vinegar' AND unit='mL'), '120');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1383,65 +1126,37 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('mangoes'), 
-
-('avocado'), 
-
-('orange bell pepper'), 
-
-('jalapeno pepper'), 
-
-('lime juice'), 
-
-('chopped fresh cilantro'), 
-
-('salt'), 
-
-('sweet and spicy seafood rub'), 
-
-('chili powder'), 
-
-('ground black pepper'), 
-
-('salmon fillet'), 
-
-('olive oil'), 
-
-('corn tortillas'), 
-
-('lemons');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('mangoes', 'piece'), 
+('avocado', 'piece'), 
+('orange bell pepper', 'piece'), 
+('jalapeno pepper', 'piece'), 
+('lime juice', 'ml'), 
+('chopped fresh cilantro', 'g'), 
+('salt', 'g'), 
+('sweet and spicy seafood rub', 'g'), 
+('chili powder', 'g'), 
+('ground black pepper', 'g'), 
+('salmon fillet', 'g'), 
+('olive oil', 'ml'), 
+('corn tortillas', 'piece'), 
+('lemons', 'pieces');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='mangoes'), '3'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='avocado'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='orange bell pepper'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='jalapeno pepper'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lime juice'), '30'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chopped fresh cilantro'), '8'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='sweet and spicy seafood rub'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chili powder'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salmon fillet'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil'), '30'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='corn tortillas'), '6'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemons'), '3');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='mangoes' AND unit='piece'), '3'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='avocado' AND unit='piece'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='orange bell pepper' AND unit='piece'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='jalapeno pepper' AND unit='piece'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lime juice' AND unit='ml'), '30'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chopped fresh cilantro' AND unit='g'), '8'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='sweet and spicy seafood rub' AND unit='g'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chili powder' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salmon fillet' AND unit='g'), '220'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil' AND unit='ml'), '30'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='corn tortillas' AND unit='piece'), '6'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemons' AND unit='pieces'), '3');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1475,53 +1190,43 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('mangoes'), ('water'), ('seasoned rice vinegar'), ('garlic cloves'), 
-
-('salt'), ('brown sugar'), ('habanero peppers'), ('cornstarch'), 
-
-('vegetable oil'), ('chicken thighs'), ('jerk seasoning'), ('shallot'), 
-
-('shredded cabbage'), ('shredded carrots'), ('plantains'), 
-
-('egg roll wrappers'), ('eggs');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('mangoes', 'piece'), 
+('water', 'ml'), 
+('seasoned rice vinegar', 'ml'), 
+('garlic cloves', 'pieces'), 
+('salt', 'g'), 
+('brown sugar', 'g'), 
+('habanero peppers', 'piece'), 
+('cornstarch', 'g'), 
+('vegetable oil', 'ml'), 
+('chicken thighs', 'g'), 
+('jerk seasoning', 'g'), 
+('shallot', 'piece'), 
+('shredded cabbage', 'g'), 
+('shredded carrots', 'g'), 
+('plantains', 'piece'), 
+('egg roll wrappers', 'piece'), 
+('eggs', 'pieces');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='mangoes'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water'), '210'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='seasoned rice vinegar'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='garlic cloves'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar'), '105'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='habanero peppers'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cornstarch'), '3'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vegetable oil'), '500'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chicken thighs'), '450'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='jerk seasoning'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shallot'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shredded cabbage'), '200'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shredded carrots'), '100'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='plantains'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='egg roll wrappers'), '18'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs'), '1');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='mangoes' AND unit='piece'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water' AND unit='ml'), '210'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='seasoned rice vinegar' AND unit='ml'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='garlic cloves' AND unit='pieces'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar' AND unit='g'), '105'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='habanero peppers' AND unit='piece'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cornstarch' AND unit='g'), '3'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vegetable oil' AND unit='ml'), '500'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chicken thighs' AND unit='g'), '450'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='jerk seasoning' AND unit='g'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shallot' AND unit='piece'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shredded cabbage' AND unit='g'), '200'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shredded carrots' AND unit='g'), '100'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='plantains' AND unit='piece'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='egg roll wrappers' AND unit='piece'), '18'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs' AND unit='pieces'), '1');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1555,49 +1260,29 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('fully-cooked bone-in ham'), 
-
-('water'), 
-
-('brown sugar'), 
-
-('all-purpose flour'), 
-
-('dry mustard powder'), 
-
-('honey'), 
-
-('lemon juice'), 
-
-('pineapple chunks'), 
-
-('maraschino cherries'), 
-
-('toothpicks');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('fully-cooked bone-in ham', 'g'), 
+('water', 'ml'), 
+('brown sugar', 'g'), 
+('all-purpose flour', 'g'), 
+('dry mustard powder', 'g'), 
+('honey', 'mL'), 
+('lemon juice', 'ml'), 
+('pineapple chunks', 'g'), 
+('maraschino cherries', 'g'), 
+('toothpicks', 'piece');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fully-cooked bone-in ham'), '4535'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water'), '946'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar'), '200'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='all-purpose flour'), '16'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='dry mustard powder'), '12'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='honey'), '85'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice'), '5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pineapple chunks'), '565'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='maraschino cherries'), '280'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='toothpicks'), '24');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fully-cooked bone-in ham' AND unit='g'), '4535'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water' AND unit='ml'), '946'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar' AND unit='g'), '200'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='all-purpose flour' AND unit='g'), '16'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='dry mustard powder' AND unit='g'), '12'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='honey' AND unit='mL'), '85'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice' AND unit='ml'), '5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pineapple chunks' AND unit='g'), '565'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='maraschino cherries' AND unit='g'), '280'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='toothpicks' AND unit='piece'), '24');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1631,21 +1316,15 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('watermelon'), 
-
-('blueberries'), 
-
-('papaya');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('watermelon', 'g'), 
+('blueberries', 'g'), 
+('papaya', 'piece');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='watermelon'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='blueberries'), '5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='papaya'), '1');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='watermelon' AND unit='g'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='blueberries' AND unit='g'), '7'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='papaya' AND unit='piece'), '1');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1679,57 +1358,33 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('black beans'), 
-
-('whole kernel sweet corn'), 
-
-('roma tomatoes'), 
-
-('red bell pepper'), 
-
-('jalapeno pepper'), 
-
-('chopped fresh cilantro'), 
-
-('onion'), 
-
-('lime juice'), 
-
-('red wine vinegar'), 
-
-('salt'), 
-
-('ground black pepper'), 
-
-('avocado');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('black beans', 'g'), 
+('whole kernel sweet corn', 'g'), 
+('roma tomatoes', 'piece'), 
+('red bell pepper', 'piece'), 
+('jalapeno pepper', 'piece'), 
+('chopped fresh cilantro', 'g'), 
+('onion', 'pieces'), 
+('lime juice', 'ml'), 
+('red wine vinegar', 'ml'), 
+('salt', 'g'), 
+('ground black pepper', 'g'), 
+('avocado', 'piece');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='black beans'), '425'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='whole kernel sweet corn'), '310'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='roma tomatoes'), '4'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='red bell pepper'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='jalapeno pepper'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chopped fresh cilantro'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion'), '40'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lime juice'), '60'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='red wine vinegar'), '30'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '6'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='avocado'), '2');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='black beans' AND unit='g'), '425'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='whole kernel sweet corn' AND unit='g'), '310'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='roma tomatoes' AND unit='piece'), '4'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='red bell pepper' AND unit='piece'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='jalapeno pepper' AND unit='piece'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chopped fresh cilantro' AND unit='g'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion' AND unit='pieces'), '0.25'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lime juice' AND unit='ml'), '60'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='red wine vinegar' AND unit='ml'), '30'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '6'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='avocado' AND unit='piece'), '2');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1763,57 +1418,33 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('refried beans'), 
-
-('ground beef'), 
-
-('taco seasoning mix'), 
-
-('vegetable oil'), 
-
-('corn tortillas'), 
-
-('shredded Cheddar cheese'), 
-
-('sour cream'), 
-
-('roma tomatoes'), 
-
-('green onion'), 
-
-('diced green chiles'), 
-
-('avocado'), 
-
-('black olives');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('refried beans', 'g'), 
+('ground beef', 'g'), 
+('taco seasoning mix', 'g'), 
+('vegetable oil', 'ml'), 
+('corn tortillas', 'piece'), 
+('shredded Cheddar cheese', 'g'), 
+('sour cream', 'g'), 
+('roma tomatoes', 'piece'), 
+('green onion', 'pieces'), 
+('diced green chiles', 'g'), 
+('avocado', 'piece'), 
+('black olives', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='refried beans'), '454'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground beef'), '454'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='taco seasoning mix'), '35'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vegetable oil'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='corn tortillas'), '4'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shredded Cheddar cheese'), '225'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='sour cream'), '120'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='roma tomatoes'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='green onion'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='diced green chiles'), '113'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='avocado'), '0.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='black olives'), '15');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='refried beans' AND unit='g'), '454'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground beef' AND unit='g'), '454'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='taco seasoning mix' AND unit='g'), '35'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vegetable oil' AND unit='ml'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='corn tortillas' AND unit='piece'), '4'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shredded Cheddar cheese' AND unit='g'), '225'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='sour cream' AND unit='g'), '120'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='roma tomatoes' AND unit='piece'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='green onion' AND unit='pieces'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='diced green chiles' AND unit='g'), '113'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='avocado' AND unit='piece'), '0.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='black olives' AND unit='g'), '15');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1847,41 +1478,25 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('butter'), 
-
-('eggs'), 
-
-('multigrain bread'), 
-
-('avocado'), 
-
-('lemon juice'), 
-
-('cayenne pepper'), 
-
-('salt'), 
-
-('ground black pepper');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('butter', 'g'), 
+('eggs', 'pieces'), 
+('multigrain bread', 'piece'), 
+('avocado', 'piece'), 
+('lemon juice', 'ml'), 
+('cayenne pepper', 'g'), 
+('salt', 'g'), 
+('ground black pepper', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter'), '5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='multigrain bread'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='avocado'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice'), '5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cayenne pepper'), '0.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper'), '1');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter' AND unit='g'), '5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs' AND unit='pieces'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='multigrain bread' AND unit='piece'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='avocado' AND unit='piece'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice' AND unit='ml'), '5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cayenne pepper' AND unit='g'), '0.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper' AND unit='g'), '1');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1915,41 +1530,25 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('multigrain bread'), 
-
-('avocado'), 
-
-('chopped fresh cilantro'), 
-
-('lemon juice'), 
-
-('lemon zest'), 
-
-('cayenne pepper'), 
-
-('salt'), 
-
-('chia seeds');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('multigrain bread', 'piece'), 
+('avocado', 'piece'), 
+('chopped fresh cilantro', 'g'), 
+('lemon juice', 'ml'), 
+('lemon zest', 'g'), 
+('cayenne pepper', 'g'), 
+('salt', 'g'), 
+('chia seeds', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='multigrain bread'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='avocado'), '0.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chopped fresh cilantro'), '8'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice'), '5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon zest'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cayenne pepper'), '0.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '0.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chia seeds'), '1');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='multigrain bread' AND unit='piece'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='avocado' AND unit='piece'), '0.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chopped fresh cilantro' AND unit='g'), '8'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice' AND unit='ml'), '5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon zest' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cayenne pepper' AND unit='g'), '0.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '0.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chia seeds' AND unit='g'), '1');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -1983,47 +1582,39 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('beef skirt steak'), ('chicken thighs'), ('fajita seasoning'), 
-
-('garlic powder'), ('refried beans'), ('avocado'), ('vegetable oil'), 
-
-('corn tortillas'), ('green bell pepper'), ('onion'), ('chopped fresh cilantro'), 
-
-('shredded American cheese'), ('sour cream'), ('roma tomatoes'), ('pickled jalapeno peppers');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('beef skirt steak', 'g'), 
+('chicken thighs', 'g'), 
+('fajita seasoning', 'g'), 
+('garlic powder', 'g'), 
+('refried beans', 'g'), 
+('avocado', 'piece'), 
+('vegetable oil', 'ml'), 
+('corn tortillas', 'piece'), 
+('green bell pepper', 'piece'), 
+('onion', 'pieces'), 
+('chopped fresh cilantro', 'g'), 
+('shredded American cheese', 'g'), 
+('sour cream', 'g'), 
+('roma tomatoes', 'piece'), 
+('pickled jalapeno peppers', 'piece');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='beef skirt steak'), '907'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chicken thighs'), '907'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fajita seasoning'), '6'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='garlic powder'), '8'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='refried beans'), '450'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='avocado'), '4'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vegetable oil'), '235'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='corn tortillas'), '24'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='green bell pepper'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chopped fresh cilantro'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shredded American cheese'), '454'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='sour cream'), '340'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='roma tomatoes'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pickled jalapeno peppers'), '4');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='beef skirt steak' AND unit='g'), '907'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chicken thighs' AND unit='g'), '907'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fajita seasoning' AND unit='g'), '6'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='garlic powder' AND unit='g'), '8'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='refried beans' AND unit='g'), '450'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='avocado' AND unit='piece'), '4'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vegetable oil' AND unit='ml'), '235'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='corn tortillas' AND unit='piece'), '24'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='green bell pepper' AND unit='piece'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion' AND unit='pieces'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chopped fresh cilantro' AND unit='g'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='shredded American cheese' AND unit='g'), '454'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='sour cream' AND unit='g'), '340'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='roma tomatoes' AND unit='piece'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='pickled jalapeno peppers' AND unit='piece'), '4');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -2057,25 +1648,17 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('fully-cooked spiral cut ham'), 
-
-('brown sugar'), 
-
-('apricot jam'), 
-
-('dry mustard powder');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('fully-cooked spiral cut ham', 'g'), 
+('brown sugar', 'g'), 
+('apricot jam', 'g'), 
+('dry mustard powder', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fully-cooked spiral cut ham'), '4535'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar'), '135'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricot jam'), '110'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='dry mustard powder'), '4');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fully-cooked spiral cut ham' AND unit='g'), '4535'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar' AND unit='g'), '135'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricot jam' AND unit='g'), '110'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='dry mustard powder' AND unit='g'), '4');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -2109,41 +1692,25 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('ground beef'), ('bread crumbs'), ('onion'), ('eggs'), ('garlic cloves'), 
-
-('apricot preserves'), ('salt'), ('ground black pepper'), 
-
-('ketchup'), ('brown sugar'), ('hot sauce'), ('Worcestershire sauce'), ('apple cider vinegar');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('ground beef', 'g'), ('bread crumbs', 'g'), ('onion', 'pieces'), ('eggs', 'pieces'), ('garlic cloves', 'pieces'), 
+('apricot preserves', 'g'), ('salt', 'g'), ('ground black pepper', 'g'), 
+('ketchup', 'ml'), ('brown sugar', 'g'), ('hot sauce', 'ml'), ('Worcestershire sauce', 'ml'), ('apple cider vinegar', 'ml');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground beef'), '680'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='bread crumbs'), '100'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='garlic cloves'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricot preserves'), '60'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '18'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper'), '3'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ketchup'), '120'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar'), '25'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='hot sauce'), '5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='Worcestershire sauce'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apple cider vinegar'), '15');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground beef' AND unit='g'), '680'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='bread crumbs' AND unit='g'), '100'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion' AND unit='pieces'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs' AND unit='pieces'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='garlic cloves' AND unit='pieces'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricot preserves' AND unit='g'), '60 g'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '18 g'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper' AND unit='g'), '3 g'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ketchup' AND unit='ml'), '120 ml'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar' AND unit='g'), '25 g'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='hot sauce' AND unit='ml'), '5 ml'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='Worcestershire sauce' AND unit='ml'), '15 ml'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apple cider vinegar' AND unit='ml'), '15 ml');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -2177,41 +1744,25 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('almond flour'), ('brown sugar'), ('almonds'), ('butter'), 
-
-('dried apricots'), ('water'), ('amaretto liqueur'), ('white sugar'), 
-
-('cream cheese'), ('sour cream'), ('cornstarch'), ('vanilla extract'), ('eggs');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('almond flour', 'g'), ('brown sugar', 'g'), ('almonds', 'g'), ('butter', 'g'), 
+('dried apricots', 'g'), ('water', 'ml'), ('amaretto liqueur', 'ml'), ('white sugar', 'g'), 
+('cream cheese', 'g'), ('sour cream', 'g'), ('cornstarch', 'g'), ('vanilla extract', 'ml'), ('eggs', 'pieces');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='almond flour'), '130'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar'), '40'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='almonds'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter'), '30'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='dried apricots'), '200'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water'), '250'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='amaretto liqueur'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '190'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cream cheese'), '680'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='sour cream'), '480'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cornstarch'), '10'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vanilla extract'), '12'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs'), '3');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='almond flour' AND unit='g'), '130'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar' AND unit='g'), '40'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='almonds' AND unit='g'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter' AND unit='g'), '30'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='dried apricots' AND unit='g'), '200'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water' AND unit='ml'), '250'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='amaretto liqueur' AND unit='ml'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '190'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cream cheese' AND unit='g'), '680'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='sour cream' AND unit='g'), '480'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cornstarch' AND unit='g'), '10'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='vanilla extract' AND unit='ml'), '12'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs' AND unit='pieces'), '3');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -2245,49 +1796,29 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('white sugar'), ('butter'), ('eggs'), ('all-purpose flour'), 
-
-('baking soda'), ('salt'), ('sour cream'), ('apricot brandy'), 
-
-('lemon zest'), ('peach schnapps'), ('water'), ('apricot preserves'), 
-
-('almonds'), ('fresh peach'), ('lemon juice'), ('blueberries');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('white sugar', 'g'), ('butter', 'g'), ('eggs', 'pieces'), ('all-purpose flour', 'g'), 
+('baking soda', 'g'), ('salt', 'g'), ('sour cream', 'g'), ('apricot brandy', 'ml'), 
+('lemon zest', 'g'), ('peach schnapps', 'ml'), ('water', 'ml'), ('apricot preserves', 'g'), 
+('almonds', 'g'), ('fresh peach', 'piece'), ('lemon juice', 'ml'), ('blueberries', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '900'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter'), '225'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs'), '6'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='all-purpose flour'), '375'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='baking soda'), '1.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '3'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='sour cream'), '240'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricot brandy'), '180'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon zest'), '12'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='peach schnapps'), '240'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water'), '475'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricot preserves'), '325'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='almonds'), '50'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh peach'), '4'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice'), '120'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='blueberries'), '150');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '900'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter' AND unit='g'), '225'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs' AND unit='pieces'), '6'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='all-purpose flour' AND unit='g'), '375'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='baking soda' AND unit='g'), '1.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '3'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='sour cream' AND unit='g'), '240'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricot brandy' AND unit='ml'), '180'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon zest' AND unit='g'), '12'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='peach schnapps' AND unit='ml'), '240'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water' AND unit='ml'), '475'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricot preserves' AND unit='g'), '325'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='almonds' AND unit='g'), '50'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh peach' AND unit='piece'), '4'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice' AND unit='ml'), '120'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='blueberries' AND unit='g'), '150');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -2321,45 +1852,27 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('water'), ('salt'), ('white sugar'), ('bone-in pork chops'), 
-
-('chili powder'), ('onion powder'), ('ground white pepper'), 
-
-('apricot preserves'), ('hoisin sauce'), ('grated fresh ginger'), 
-
-('garlic cloves'), ('chili-garlic sauce'), ('lime juice'), ('fresh parsley');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('water', 'ml'), ('salt', 'g'), ('white sugar', 'g'), ('bone-in pork chops', 'pc'), 
+('chili powder', 'g'), ('onion powder', 'g'), ('ground white pepper', 'g'), 
+('apricot preserves', 'g'), ('hoisin sauce', 'g'), ('grated fresh ginger', 'g'), 
+('garlic cloves', 'pieces'), ('chili-garlic sauce', 'g'), ('lime juice', 'ml'), ('fresh parsley', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water'), '946'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '36'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '25'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='bone-in pork chops'), '4'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chili powder'), '3'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion powder'), '3'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground white pepper'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricot preserves'), '150'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='hoisin sauce'), '30'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='grated fresh ginger'), '5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='garlic cloves'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chili-garlic sauce'), '5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lime juice'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh parsley'), '2');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='water' AND unit='ml'), '946'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '36'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '25'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='bone-in pork chops' AND unit='pc'), '4'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chili powder' AND unit='g'), '3'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion powder' AND unit='g'), '3'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground white pepper' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricot preserves' AND unit='g'), '150'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='hoisin sauce' AND unit='g'), '30'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='grated fresh ginger' AND unit='g'), '5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='garlic cloves' AND unit='pieces'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chili-garlic sauce' AND unit='g'), '5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lime juice' AND unit='ml'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh parsley' AND unit='g'), '2');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -2393,25 +1906,17 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('apricots'), 
-
-('fruit pectin'), 
-
-('white sugar'), 
-
-('apricot brandy');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('apricots', 'g'), 
+('fruit pectin', 'g'), 
+('white sugar', 'g'), 
+('apricot brandy', 'ml');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricots'), '1585'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fruit pectin'), '50'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '1400'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricot brandy'), '80');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricots' AND unit='g'), '1585'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fruit pectin' AND unit='g'), '50'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '1400'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricot brandy' AND unit='ml'), '80');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -2445,49 +1950,29 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('nectarines'), 
-
-('red bell pepper'), 
-
-('onion'), 
-
-('jalapeno pepper'), 
-
-('chopped fresh cilantro'), 
-
-('lime juice'), 
-
-('olive oil'), 
-
-('salt'), 
-
-('cayenne pepper'), 
-
-('ground black pepper');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('nectarines', 'pieces'), 
+('red bell pepper', 'piece'), 
+('onion', 'pieces'), 
+('jalapeno pepper', 'piece'), 
+('chopped fresh cilantro', 'g'), 
+('lime juice', 'ml'), 
+('olive oil', 'ml'), 
+('salt', 'g'), 
+('cayenne pepper', 'g'), 
+('ground black pepper', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='nectarines'), '150'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='red bell pepper'), '75'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion'), '50'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='jalapeno pepper'), '30'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chopped fresh cilantro'), '4'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lime juice'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil'), '10'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '3'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cayenne pepper'), '0.5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper'), '0.5');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='nectarines' AND unit='pieces'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='red bell pepper' AND unit='piece'), '0.75'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='onion' AND unit='pieces'), '0.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='jalapeno pepper' AND unit='piece'), '30'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='chopped fresh cilantro' AND unit='g'), '4'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lime juice' AND unit='ml'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil' AND unit='ml'), '10'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '3'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cayenne pepper' AND unit='g'), '0.5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='ground black pepper' AND unit='g'), '0.5');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -2521,21 +2006,15 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('nectarines'), 
-
-('butter'), 
-
-('brown sugar');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('nectarines', 'pieces'), 
+('butter', 'g'), 
+('brown sugar', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='nectarines'), '4'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter'), '28'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar'), '50');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='nectarines' AND unit='pieces'), '4'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter' AND unit='g'), '28'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='brown sugar' AND unit='g'), '50');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -2569,33 +2048,21 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('all-purpose flour'), 
-
-('white sugar'), 
-
-('butter'), 
-
-('nectarines'), 
-
-('cornstarch'), 
-
-('eggs');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('all-purpose flour', 'g'), 
+('white sugar', 'g'), 
+('butter', 'g'), 
+('nectarines', 'pieces'), 
+('cornstarch', 'g'), 
+('eggs', 'pieces');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='all-purpose flour'), '250'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '300'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter'), '115'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='nectarines'), '3'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cornstarch'), '8'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs'), '2');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='all-purpose flour' AND unit='g'), '250'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '300'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter' AND unit='g'), '115'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='nectarines' AND unit='pieces'), '3'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='cornstarch' AND unit='g'), '8'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs' AND unit='pieces'), '2');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -2629,49 +2096,29 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('butter'), 
-
-('eggs'), 
-
-('white sugar'), 
-
-('salt'), 
-
-('all-purpose flour'), 
-
-('baking powder'), 
-
-('milk'), 
-
-('nectarines'), 
-
-('blackberries'), 
-
-('confectioners\' sugar');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('butter', 'g'), 
+('eggs', 'pieces'), 
+('white sugar', 'g'), 
+('salt', 'g'), 
+('all-purpose flour', 'g'), 
+('baking powder', 'g'), 
+('milk', 'ml'), 
+('nectarines', 'pieces'), 
+('blackberries', 'g'), 
+('confectioners\' sugar', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter'), '113'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '100'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='all-purpose flour'), '190'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='baking powder'), '5'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='milk'), '15'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='nectarines'), '3'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='blackberries'), '170'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='confectioners\' sugar'), '8');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter' AND unit='g'), '113'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='eggs' AND unit='pieces'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '100'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='all-purpose flour' AND unit='g'), '190'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='baking powder' AND unit='g'), '5'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='milk' AND unit='ml'), '15'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='nectarines' AND unit='pieces'), '3'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='blackberries' AND unit='g'), '170'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='confectioners\' sugar' AND unit='g'), '8');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -2705,21 +2152,15 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('coconut oil'), 
-
-('unpopped popcorn kernels'), 
-
-('salt');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('coconut oil', 'ml'), 
+('unpopped popcorn kernels', 'g'), 
+('salt', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='coconut oil'), '28'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='unpopped popcorn kernels'), '56'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt'), '1');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='coconut oil' AND unit='ml'), '28'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='unpopped popcorn kernels' AND unit='g'), '56'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='salt' AND unit='g'), '1');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -2753,37 +2194,23 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('olive oil'), 
-
-('nectarines'), 
-
-('crusty bread'), 
-
-('whole-milk ricotta cheese'), 
-
-('almonds'), 
-
-('fresh mint'), 
-
-('honey');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('olive oil', 'ml'), 
+('nectarines', 'pieces'), 
+('crusty bread', 'pc'), 
+('whole-milk ricotta cheese', 'g'), 
+('almonds', 'g'), 
+('fresh mint', 'g'), 
+('honey', 'mL');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil'), '35'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='nectarines'), '1'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='crusty bread'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='whole-milk ricotta cheese'), '60'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='almonds'), '10'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh mint'), '2'),
-
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='honey'), '14');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='olive oil' AND unit='ml'), '35'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='nectarines' AND unit='pieces'), '1'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='crusty bread' AND unit='pc'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='whole-milk ricotta cheese' AND unit='g'), '60'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='almonds' AND unit='g'), '10'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fresh mint' AND unit='g'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='honey' AND unit='mL'), '14');
 
 INSERT INTO recipes (source_index, recipe_name, prep_time, cook_time, total_time, servings, directions, rating, source_url, cuisine_path, nutrition, img_src)
 
@@ -2817,24 +2244,19 @@ VALUES (
 
 SET @last_id = LAST_INSERT_ID();
 
-INSERT IGNORE INTO ingredients (name) VALUES 
-
-('apricots'), 
-
-('lemon juice'), 
-
-('white sugar'), 
-
-('butter'), 
-
-('fruit pectin');
+INSERT IGNORE INTO ingredients (name, unit) VALUES 
+('apricots', 'g'), 
+('lemon juice', 'ml'), 
+('white sugar', 'g'), 
+('butter', 'g'), 
+('fruit pectin', 'g');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES 
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricots'), '1135'),
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice'), '80'),
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar'), '1150'),
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter'), '2'),
-(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fruit pectin'), '50');
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='apricots' AND unit='g'), '1135'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='lemon juice' AND unit='ml'), '80'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='white sugar' AND unit='g'), '1150'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='butter' AND unit='g'), '2'),
+(@last_id, (SELECT ingredient_id FROM ingredients WHERE name='fruit pectin' AND unit='g'), '50');
 
 SELECT COUNT(*) AS imported_recipe_count FROM recipes;
 
