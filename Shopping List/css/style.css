@@ -306,3 +306,18 @@ section {
   bottom: 8%;
   left: 35%;
 }
+
+#clear-list-btn{
+	font-family : 'Ramillas Regular', serif;
+	color: white;
+	background-color: #133951;
+	margin: 0 auto;
+	border: none;
+}
+
+#clear-list-btn:hover {
+	font-family : 'Ramillas Regular', serif;
+	color: white;
+	background-color: #F3C12C;
+	border: none;
+}

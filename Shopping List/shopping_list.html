@@ -17,7 +17,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav ms-auto">
-                            <a class="nav-link nav_style" href="recipes.html">Recipes</a>
+                            <a class="nav-link nav_style" href="recipe.html">Recipes</a>
                             <a class="nav-link nav_style" href="shopping_list.html">Shopping List</a>
                             <a class="nav-link nav_style" href="profile.html">My Profile</a>
                         </div>
@@ -35,20 +35,17 @@
                 <div class="container-fluid text-center no-margin">
                     <div class="row">
                         <div class="col-6 line basket custom-col">
-                        <div class="basket-container">
-                            <img src="images/Shopping Basket Shadow.png" class="basket-bg">
-                            <img src="images/eggs.png" class="item eggs">
-                            <img src="images/sugar.png" class="item sugar">
-                            <img src="images/milk.png" class="item milk">
-                            <img src="images/chicken.png" class="item chicken">
-                            <img src="images/cherries.png" class="item cherries">
+                            <div class="basket-container">
+                                <img src="images/Shopping Basket Shadow.png" class="basket-bg">
+                                <img src="images/eggs.png" class="item eggs" id="basket-eggs" style="display: none;">
+                                <img src="images/sugar.png" class="item sugar" id="basket-white sugar" style="display: none;">
+                                <img src="images/milk.png" class="item milk" id="basket-milk" style="display: none;">
+                                <img src="images/chicken.png" class="item chicken" id="basket-chicken-thighs" style="display: none;">
+                                <img src="images/cherries.png" class="item cherries" id="basket-cherries" style="display: none;">
+                            </div>
                         </div>
-                    </div>
                         <div class="col-6 receipt custom-col">
-                            <!--
-                            <img src="images/Receipt Shadow.png">
-                        -->
-                            <h2 class="title_font">The Fridge</h2>
+                            <h2 class="title_font">The Cookbook</h2>
                             <p class="groceries">GROCERIES</p>
                             <p class="info">DATE</p>
                             <p class="info">NAME</p>
@@ -60,43 +57,21 @@
                                         <td class="length">AMT</td>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="begin">01</td>
-                                        <td>EGGS</td>
-                                        <td class="length">2 PCS</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="begin">02</td>
-                                        <td>MILK</td>
-                                        <td class="length">200 L</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="begin">03</td>
-                                        <td>SUGAR</td>
-                                        <td class="length">400 G</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="begin">04</td>
-                                        <td>CHERRIES</td>
-                                        <td class="length">300 G</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="begin">05</td>
-                                        <td>CHICKEN</td>
-                                        <td class="length">1000 G</td>
-                                    </tr>
+                                <tbody id="shopping-list-body">
                                 </tbody>
                             </table>
                             <div class="thanks">
                                 <p>THANK YOU FOR VISITING!</p>
                                 <img src="images/barcode.png">
                             </div>
+                            <div class="text-center mt-4" style="margin-bottom: 15px;">
+                                <button id="clear-list-btn" class="btn btn-danger btn-lg">Clear List</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </section>
         </div>
+        <script src="js/main.js"></script>
     </body>
 </html>
