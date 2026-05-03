@@ -1,13 +1,17 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     loadShoppingList();
-    toggleClearButton();
 
-    const clearBtn = document.getElementById("clear-list-btn");
+    const clearBtn = document.getElementById('clear-list-btn');
+    const downloadBtn = document.getElementById('download-list-btn');
+
     if (clearBtn) {
-        clearBtn.addEventListener("click", clearShoppingList);
+        clearBtn.addEventListener('click', clearShoppingList);
+    }
+
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', downloadShoppingList);
     }
 });
-
 
 const ingredientImageKeywords = [
     {
@@ -119,7 +123,7 @@ const ingredientImageKeywords = [
         keywords: ["pomegranate juice"]
     },
     {
-        imageId: "baske-seeds",
+        imageId: "basket-seeds",
         keywords: ["pomegranate seeds", "pomegranate seed"]
     },
     {
@@ -150,18 +154,18 @@ function normalizeText(value) {
 }
 
 function hideAllBasketImages() {
-    const allBasketImages = document.querySelectorAll(".basket-container .item");
+    const allBasketImages = document.querySelectorAll('.basket-container .item');
 
-    allBasketImages.forEach(function (img) {
-        img.style.display = "none";
+    allBasketImages.forEach(function(img) {
+        img.style.display = 'none';
     });
 }
 
 function showBasketImageForIngredient(ingredientName) {
     const normalizedIngredient = normalizeText(ingredientName);
 
-    ingredientImageKeywords.forEach(function (mapping) {
-        const matched = mapping.keywords.some(function (keyword) {
+    ingredientImageKeywords.forEach(function(mapping) {
+        const matched = mapping.keywords.some(function(keyword) {
             const normalizedKeyword = normalizeText(keyword);
             return normalizedIngredient.includes(normalizedKeyword);
         });
@@ -170,7 +174,7 @@ function showBasketImageForIngredient(ingredientName) {
             const image = document.getElementById(mapping.imageId);
 
             if (image) {
-                image.style.display = "block";
+                image.style.display = 'block';
             }
         }
     });
@@ -183,30 +187,134 @@ function updateBasketImages(items) {
         return;
     }
 
-    items.forEach(function (item) {
+    items.forEach(function(item) {
         showBasketImageForIngredient(item.name);
     });
 }
 
-function toggleClearButton() {
-    const clearBtn = document.getElementById("clear-list-btn");
-    const listBody = document.getElementById("shopping-list-body");
+function toggleButtons() {
+    const clearBtn = document.getElementById('clear-list-btn');
+    const downloadBtn = document.getElementById('download-list-btn');
+    const listBody = document.getElementById('shopping-list-body');
 
-    if (!clearBtn || !listBody) {
+    if (!clearBtn || !downloadBtn || !listBody) {
         return;
     }
-
+    
     if (
         listBody.children.length === 0 ||
-        listBody.innerHTML.toLowerCase().includes("empty")
+        listBody.innerHTML.toLowerCase().includes('empty')
     ) {
-        clearBtn.style.display = "none";
+        clearBtn.style.display = 'none';
+        downloadBtn.style.display = 'none';
     } else {
-        clearBtn.style.display = "block";
+        clearBtn.style.display = 'inline-block';
+        downloadBtn.style.display = 'inline-block';
     }
 }
 
-function showEmptyListMessage(listBody) {
+// 1. Check database first. If not logged in, check session storage.
+function loadShoppingList() {
+    const listBody = document.getElementById('shopping-list-body');
+
+    if (!listBody) {
+        return;
+    }
+
+    hideAllBasketImages();
+
+    fetch('../ShoppingListController')
+        .then(function(response) {
+            if (response.ok) {
+                const userName = response.headers.get("X-User-Name") || "Member";
+                setReceiptInfo(userName);
+                return response.json();
+            } else if (response.status === 401) {
+                setReceiptInfo("Guest");
+                return null;
+            }
+
+            throw new Error('Failed to fetch from DB');
+        })
+        .then(function(dbItems) {
+            if (dbItems) {
+                renderItems(dbItems, listBody);
+            } else {
+                loadFromSessionStorage(listBody);
+            }
+        })
+        .catch(function(error) {
+            console.error("Error loading shopping list:", error);
+            setReceiptInfo("Guest");
+            loadFromSessionStorage(listBody);
+        });
+}
+
+// 2. Helper to load from Session Storage
+function loadFromSessionStorage(listBody) {
+    const storedList = sessionStorage.getItem('guest_shopping_list');
+
+    if (storedList) {
+        try {
+            const items = JSON.parse(storedList);
+            renderItems(items, listBody);
+        } catch (e) {
+            console.error("Failed to parse guest shopping list:", e);
+            renderEmpty(listBody);
+        }
+    } else {
+        renderEmpty(listBody);
+    }
+}
+
+// 3. Render the items to the screen
+function renderItems(items, listBody) {
+    hideAllBasketImages();
+
+    if (items && items.length > 0) {
+        listBody.innerHTML = '';
+
+        items.forEach(function(item) {
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td class="begin">${item.quantity || 1}</td>
+                <td>${item.name || ''}</td>
+                <td class="length">${item.unit || ''}</td>
+            `;
+
+            listBody.appendChild(row);
+        });
+
+        updateBasketImages(items);
+        toggleButtons();
+    } else {
+        renderEmpty(listBody);
+    }
+}
+
+function setReceiptInfo(shopperName) {
+    const dateElement = document.getElementById('receipt-date');
+    const nameElement = document.getElementById('receipt-name');
+    
+    if (dateElement) {
+        const today = new Date();
+        const formattedDate = today.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        dateElement.innerText = `DATE: ${formattedDate}`;
+    }
+    
+    if (nameElement) {
+        nameElement.innerText = `NAME: ${shopperName}`;
+    }
+}
+
+// 4. Helper to display an empty list
+function renderEmpty(listBody) {
     if (!listBody) {
         return;
     }
@@ -218,76 +326,64 @@ function showEmptyListMessage(listBody) {
     `;
 
     hideAllBasketImages();
+    toggleButtons();
 }
 
-function loadShoppingList() {
-    const listBody = document.getElementById("shopping-list-body");
-    const storedList = sessionStorage.getItem("guest_shopping_list");
+// Clear Button Logic
+function clearShoppingList() {
+    fetch('../ShoppingListController', { method: 'DELETE' })
+        .then(function(response) {
+            sessionStorage.removeItem('guest_shopping_list');
+            
+            const listBody = document.getElementById('shopping-list-body');
+            renderEmpty(listBody);
+        })
+        .catch(function(error) {
+            console.error('Error clearing shopping list:', error);
+
+            sessionStorage.removeItem('guest_shopping_list');
+
+            const listBody = document.getElementById('shopping-list-body');
+            renderEmpty(listBody);
+        });
+}
+
+// Download Button Logic
+function downloadShoppingList() {
+    const listBody = document.getElementById('shopping-list-body');
 
     if (!listBody) {
         return;
     }
 
-    hideAllBasketImages();
+    const rows = listBody.querySelectorAll('tr');
+    
+    if (rows.length > 0 && !listBody.innerHTML.toLowerCase().includes('empty')) {
+        let fileText = "MY SHOPPING LIST\n";
+        fileText += "================\n\n";
+        
+        rows.forEach(function(row) {
+            const cells = row.querySelectorAll('td');
 
-    if (storedList) {
-        try {
-            const items = JSON.parse(storedList);
+            if (cells.length === 3) {
+                const qty = cells[0].innerText.trim();
+                const name = cells[1].innerText.trim();
+                const unit = cells[2].innerText.trim();
 
-            if (items && items.length > 0) {
-                listBody.innerHTML = "";
-
-                items.forEach(function (item) {
-                    const row = document.createElement("tr");
-
-                    row.innerHTML = `
-                        <td class="begin">${item.quantity || 1}</td>
-                        <td>${item.name || ""}</td>
-                        <td class="length">${item.amount || "0.00"}</td>
-                    `;
-
-                    listBody.appendChild(row);
-                });
-
-                updateBasketImages(items);
-            } else {
-                showEmptyListMessage(listBody);
+                fileText += `- ${qty}x ${name} (${unit})\n`;
             }
-        } catch (e) {
-            console.error("Failed to parse shopping list:", e);
-            showEmptyListMessage(listBody);
-        }
-    } else {
-        showEmptyListMessage(listBody);
-    }
-
-    toggleClearButton();
-}
-
-function clearShoppingList() {
-    fetch("../DeleteFromShoppingListServlet", {
-        method: "POST"
-    })
-        .then(function (response) {
-            if (response.ok) {
-                sessionStorage.removeItem("guest_shopping_list");
-
-                const listBody = document.getElementById("shopping-list-body");
-                showEmptyListMessage(listBody);
-
-                toggleClearButton();
-            } else {
-                console.error("Failed to clear list on the server.");
-            }
-        })
-        .catch(function (error) {
-            console.error("Error clearing shopping list:", error);
-
-            sessionStorage.removeItem("guest_shopping_list");
-
-            const listBody = document.getElementById("shopping-list-body");
-            showEmptyListMessage(listBody);
-
-            toggleClearButton();
         });
+        
+        const blob = new Blob([fileText], { type: "text/plain" });
+        const link = document.createElement("a");
+
+        link.href = URL.createObjectURL(blob);
+        link.download = "Shopping_List.txt";
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        URL.revokeObjectURL(link.href);
+    }
 }
