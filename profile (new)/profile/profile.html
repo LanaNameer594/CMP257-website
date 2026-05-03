@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cookbook</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="nav_style">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand title_font" href="home.html">The Cookbook</a>
+                <button class="navbar-toggler nav_style" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav ms-auto">
+                        <a class="nav-link nav_style" href="../recipes/recipe.html">Recipes</a>
+                        <a class="nav-link nav_style" href="../shopping_list/shopping_list.html">Shopping List</a>
+                        <a class="nav-link nav_style" href="profile.html">My Profile</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="loginScreen" class="login-container hidden">
+        <div class="login-visual">
+            </div>
+        <div class="login-form-area">
+            <img src="login.png">
+            <form id="loginForm">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="submit-btn">SIGN IN</button>
+                <a href="#" class="forgot-link">Forgot Password?</a>
+            </form>
+        </div>
+    </div>
+
+    <main id="profileScreen" class="profile-container">
+        <div class="profile-banner"></div>
+        <div class="avatar-container">
+            <img src="user.png" alt="User Avatar" class="avatar">
+        </div>
+        <h2 id="welcome-text">Welcome!</h2>
+
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="openTab('favorites')">FAVORITES</button>
+            <button class="tab-btn" onclick="openTab('settings')">SETTINGS</button>
+        </div>
+
+        <section id="favorites" class="tab-content active-content">
+    <div class="container mt-4">
+        <div class="row g-4">
+            
+            <div class="col-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="recipe-card h-100 shadow-sm">
+                    <div class="card-img-placeholder position-relative">
+                        <span class="lemon-icon position-absolute top-0 end-0 m-2">🍋</span>
+                    </div>
+                    <div class="card-info p-3">
+                        <h3 class="dark-blue-text h5">Lemony Linguine</h3>
+                        <p class="text-muted small mb-1">Prep: 20 mins</p>
+                        <span class="badge bg-light text-dark border border-dark">PASTA</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="recipe-card h-100 shadow-sm">
+                    <div class="card-img-placeholder position-relative">
+                        <span class="lemon-icon position-absolute top-0 end-0 m-2">🍋</span>
+                    </div>
+                    <div class="card-info p-3">
+                        <h3 class="dark-blue-text h5">Seafood Risotto</h3>
+                        <p class="text-muted small mb-1">Prep: 40 mins</p>
+                        <span class="badge bg-light text-dark border border-dark">SEAFOOD</span>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+    </div>
+</section>
+    <section id="settings" class="tab-content">
+            <div class="settings-list">
+                
+                <div class="general-info">
+                    <h3 class="dark-blue-text text-center mt-4 mb-3" style="font-family: 'Ramillas Bold';">ACCOUNT DETAILS</h3>
+                    
+                    <div class="ceramic-divider"></div>
+
+                    <div class="pfp-box text-center my-4">
+                        <img src="user.png" class="profile-picture" alt="User Profile">
+                        <br>
+                        <input type="file" id="file-input" accept=".png, .jpg, .jpeg">
+                        <label for="file-input" class="upload-button mt-3">Edit Profile Picture</label>
+                    </div>
+
+                    <div class="box">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" placeholder="Jane" disabled>
+                    </div>
+                    
+                    <div class="box">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" placeholder="Doe" disabled>
+                    </div>
+                    
+                    <div class="box">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="JaneDoe" disabled>
+                    </div>
+                    
+                    <div class="box">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="jane.doe@gmail.com" disabled>
+                    </div>
+                    
+                    <div class="box">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="............" disabled>
+                    </div>
+
+                    <div class="ceramic-divider mt-4"></div>
+                    
+                    <h3 class="dark-blue-text text-center mt-4 mb-3" style="font-family: 'Ramillas Bold';">PREFERENCES</h3>
+
+                    <div class="box">
+                        <label for="toggle-theme">Dark Mode 🌙</label>
+                        <button class="toggle-theme" type="button">Toggle</button>
+                    </div>
+                    
+                    <div class="text-center mt-5 mb-3">
+                        <button id="profileToggleBtn" class="edit-profile px-5 py-2 fs-5" type="button">Edit Profile</button>
+                    </div>
+                    <button id="logoutBtn" class="edit-profile" type="button">
+    					🚪 Log Out
+					</button>
+                    
+                </div>
+            </div>
+    </section>
+        
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
