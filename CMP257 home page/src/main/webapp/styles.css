@@ -2,15 +2,19 @@
 @import url('https://fonts.cdnfonts.com/css/rigoletto');
 
 @font-face {
-  font-family: "AbleLead";
-  src: url("fonts/AbleLead-Regular.woff2") format("woff2");
+  font-family: 'AbleLead';
+  src: url('../fonts/Able_Lead.ttf') format(truetype);
 }
 
 @font-face {
   font-family: "Ramillas";
-  src: url("fonts/tt_ramillas/TT Ramillas Trial Regular.ttf") format("truetype");
+  src: url("../fonts/TT_Ramillas_Trial_Regular.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: 'Rigoletto';
+  src: url('../fonts/Rigoletto.otf');
+}
 
 * {
   box-sizing: border-box;
@@ -28,6 +32,7 @@ body {
   background-image: url(images/bg1.PNG);
   background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
   overflow: hidden;
   background-attachment: fixed;
 }
@@ -74,7 +79,7 @@ body {
 }
 
 .nav-link img {
-  width: 100%;
+  width: 120%;
   height: auto;
   display: block;
   filter: grayscale(0);
@@ -103,12 +108,13 @@ body {
 .random-link {
   left: 73%;
   top: 38%;
-  width: 320px;
+  width: 380px;
 }
 
 .recipes-link {
-  left: 53%;
-  top: 59%;
+  left: 51%;
+  top: 55%;
+  width: 320px;
 }
 
 .profile-link {
@@ -314,6 +320,7 @@ option, .result-card, input::placeholder, #bar-text {
   border-radius: 14px;
   font-size: 1rem;
   background: #fff;
+  font-family: "Ramillas", serif;
 }
 
 .form-group select:focus,

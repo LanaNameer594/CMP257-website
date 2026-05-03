@@ -1,4 +1,4 @@
-package com.cookbook.model;
+
 
 public class SavedRecipeRequest {
     private int userId;
