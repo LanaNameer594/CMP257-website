@@ -1,0 +1,413 @@
+/* Color Variables */
+:root {
+    --cream: #FAF5E9;
+    --dark-blue: #0B2046;
+    --yellow: #FFC300;
+    --white: #FFFFFF;
+}
+
+@font-face {
+  font-family: 'Ramillas';
+  src: url('fonts/TT\ Ramillas\ Trial\ Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Rigoletto';
+  src: url('fonts/Rigoletto.otf');
+}
+
+@font-face {
+  font-family: 'Ramillas Bold';
+  src: url(fonts/TT\ Ramillas\ Trial\ Bold.ttf);
+}
+
+body {
+    margin: 0;
+    font-family: 'Ramillas';
+    background-color: var(--cream);
+    color: var(--dark-blue);
+}
+
+.dark-blue-text { color: var(--dark-blue); }
+
+.title_font{
+  font-family: 'Rigoletto', sans-serif;
+  font-weight: normal;
+}
+
+.navbar .title_font{
+  color: #133951;
+  font-size: 40px;
+  margin: 10px;
+}
+
+.nav_style{
+    font-size: 30px;
+    font-family: 'Ramillas';
+    background-color: #F3C12C;
+    color: #133951;
+}
+
+.nav-link{
+  margin-left: 30px;
+}
+
+.navbar-toggler .navbar-toggler-icon{
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2819, 57, 81, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+}
+.navbar-toggler{
+  border: 2px solid #133951;
+}
+
+.nav-btn:hover {
+    background-color: var(--yellow);
+    color: var(--dark-blue);
+}
+
+/* Login Screen Split Layout */
+.login-container {
+    display: flex;
+    height: 100vh;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 100;
+    background: var(--cream);
+}
+.login-visual {
+    flex: 1;
+    /* Placeholder for ceramic tile pattern */
+    background: repeating-linear-gradient(45deg, var(--dark-blue), var(--dark-blue) 10px, var(--yellow) 10px, var(--yellow) 20px); 
+}
+.login-form-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login-form-area form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 15px;
+}
+.login-form-area input {
+    padding: 10px;
+    border: 1px solid var(--dark-blue);
+    background: var(--cream);
+}
+
+/* Profile Hub */
+.profile-banner {
+    height: 150px;
+    background-color: var(--dark-blue);
+}
+.avatar-container {
+    text-align: center;
+    margin-top: -50px;
+}
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px solid var(--yellow);
+    background-color: var(--white);
+    object-fit: cover;
+}
+#welcome-text { 
+    text-align: center; 
+    font-size: 3rem; 
+    font-family: 'Ramillas Bold';
+}
+
+/* Tabs */
+.tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 2rem;
+}
+.tab-btn {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    color: var(--dark-blue);
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+.tab-btn.active {
+    border-bottom: 4px solid var(--yellow);
+    font-family: 'Ramillas Bold';
+}
+
+.tab-content { 
+    display: none; 
+}
+
+.active-content { 
+    display: block; 
+}
+
+
+.recipe-card {
+    background: var(--white);
+    border: 1px solid var(--dark-blue);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.card-img-placeholder {
+    height: 150px;
+    background-color: #ddd; /* Replace with real images */
+    position: relative;
+}
+.lemon-icon {
+    position: absolute;
+    top: 10px; right: 10px;
+    font-size: 1.5rem;
+    background: var(--dark-blue);
+    border-radius: 50%;
+    padding: 5px;
+}
+
+/* Settings */
+
+
+/* Increase text size for the labels */
+.box label, .box span {
+    color: var(--dark-blue);
+    font-size: 20px; /* Increased from 18px */
+    font-weight: 600;
+    flex: 0 0 140px; /* Increased from 120px to fit the larger text */
+}
+
+/* Increase text size and padding for the inputs */
+.box input {
+    flex: 1;
+    font-size: 18px; /* Increased from 16px */
+    padding: 12px 15px; /* Added more padding for a bulkier feel */
+    border: 1px solid var(--dark-blue);
+    border-radius: 8px;
+    background-color: var(--cream);
+    color: var(--dark-blue);
+    outline: none;
+    transition: 0.2s;
+}
+
+.dietary-options { 
+    display: flex; 
+    gap: 10px; 
+    margin-bottom: 20px; 
+}
+
+.diet-btn {
+    border: 1px solid var(--dark-blue);
+    background: var(--cream);
+    padding: 10px;
+    cursor: pointer;
+}
+.active-diet { background: var(--dark-blue); color: var(--white); }
+.submit-btn {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+.hidden { display: none !important; }
+
+/* --- FIXED SETTINGS & GENERAL INFO STYLES --- */
+
+
+
+.ceramic-divider {
+    height: 2px; /* Thinned out to look like a clean line */
+    background-color: var(--dark-blue); /* Solid dark blue color */
+    margin-bottom: 15px;
+    border-radius: 2px; /* Optional: slightly softens the edges */
+}
+/* Expand the wrapper container */
+.settings-list {
+    max-width: 950px; /* Increased massively */
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Make the white box bulkier and wider */
+.general-info {
+    background: var(--white);
+    padding: 60px 50px; /* Massive padding to make the box taller and wider inside */
+    border-radius: 16px;
+    border: 2px solid var(--yellow);
+    box-shadow: 0 4px 15px rgba(11, 32, 70, 0.1);
+    width: 100%;
+}
+
+/* Bump up the size of the main Settings headings */
+.general-info h2 {
+    font-size: 50px; /* Makes "General Info" huge */
+}
+
+.general-info p { 
+    color: var(--dark-blue); 
+    font-size: 20px; /* Makes the description text larger */
+}
+
+/* Each input row */
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    gap: 15px;
+}
+
+/* Fixed width labels for perfect alignment */
+.box label, .box span {
+    color: var(--dark-blue);
+    font-size: 18px;
+    font-weight: 600;
+    flex: 0 0 120px; 
+}
+
+/* Inputs flex to take remaining space */
+.box input {
+    flex: 1;
+    font-size: 16px;
+    padding: 10px 12px;
+    border: 1px solid var(--dark-blue);
+    border-radius: 8px;
+    background-color: var(--cream);
+    color: var(--dark-blue);
+    outline: none;
+    transition: 0.2s;
+}
+
+.box input:focus {
+    border: 2px solid var(--yellow);
+    background-color: var(--white);
+}
+
+.box input:disabled {
+    opacity: 0.7;
+    background-color: #f0f0f0;
+}
+
+/* Profile Picture Upload */
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--yellow);
+}
+
+#file-input {
+    display: none;
+}
+
+.upload-button {
+    background: var(--dark-blue);
+    color: var(--white);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Ramillas Bold';
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.upload-button:hover {
+    background: var(--yellow);
+    color: var(--dark-blue);
+}
+
+/* Action Buttons */
+.edit-profile {
+    background: var(--cream);
+    color: var(--dark-blue);
+    border: 2px solid var(--dark-blue);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.edit-profile:hover {
+    background: var(--dark-blue);
+    color: var(--white);
+}
+
+.save-btn {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Ramillas Bold';
+    transition: 0.3s;
+}
+
+.save-btn:hover {
+    background-color: var(--yellow);
+    color: var(--dark-blue);
+}
+
+.toggle-theme {
+    background: var(--dark-blue);
+    color: var(--white);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.toggle-theme:hover {
+    background: var(--yellow);
+    color: var(--dark-blue);
+}
+
+
+/* Add this to your style.css */
+.save-active {
+    background-color: var(--dark-blue) !important;
+    color: var(--white) !important;
+    border-color: var(--dark-blue) !important;
+}
+
+.save-active:hover {
+    background-color: var(--yellow) !important;
+    color: var(--dark-blue) !important;
+    border-color: var(--yellow) !important;
+}
+
+/* Make the recipe images taller */
+.card-img-placeholder {
+    height: 240px; /* Increased from 180px so the images take up more space */
+    background-color: #ddd; 
+}
+
+
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .box label, .box span {
+        flex: none;
+        width: 100%;
+    }
+
+    .box input {
+        width: 100%;
+    }
+}

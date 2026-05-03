@@ -1,0 +1,188 @@
+/* ==========================================
+   1. GLOBAL STYLES
+   ========================================== */
+* {
+    box-sizing: border-box;
+    font-family: 'Ramillas', serif;
+}
+
+@font-face {
+  font-family: 'Ramillas';
+  src: url('fonts/TT\ Ramillas\ Trial\ Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Rigoletto';
+  src: url('fonts/Rigoletto.otf');
+}
+
+@font-face {
+  font-family: 'Ramillas Bold';
+  src: url(fonts/TT\ Ramillas\ Trial\ Bold.ttf);
+}
+
+
+body {
+    display: flex;
+    flex-direction: column; /* Stack the navbar on top, main content below */
+    min-height: 100vh;
+    background-color: #ffe99e;
+    /* Added quotes around the URL just in case the space causes issues */
+    background-image: url('bg login.jpg'); 
+    background-size: cover;
+    background-position: center;
+}
+
+/* ==========================================
+   2. NAVBAR STYLES
+   ========================================== */
+.title_font {
+    font-family: 'Rigoletto', sans-serif;
+    font-weight: normal;
+}
+
+.navbar .title_font {
+    color: #133951;
+    font-size: 40px;
+    margin: 10px;
+}
+
+.nav_style {
+    font-size: 30px;
+    font-family: 'Ramillas', sans-serif;
+    background-color: #F3C12C;
+    color: #133951;
+}
+
+.nav-link {
+    margin-left: 30px;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2819, 57, 81, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-toggler {
+    border: 2px solid #133951;
+}
+
+.nav-btn:hover {
+    background-color: #FFC300; /* Fallback for var(--yellow) if not defined globally */
+    color: #0B2046; /* Fallback for var(--dark-blue) */
+}
+
+/* ==========================================
+   3. LOGIN CONTAINER (Fills remaining space)
+   ========================================== */
+.login-main {
+    flex: 1; /* Tells the container to fill all space left over by the navbar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+}
+
+/* ==========================================
+   4. LOGIN BOX (WRAPPER) STYLES
+   ========================================== */
+.wrapper {
+    width: 600px;
+    height: 600px;
+    background: rgb(222, 217, 209);
+    border: 2px solid rgba(29, 40, 69, 0.647);
+    color: #1d2845;
+    box-shadow: 0 0 10px rgb(175, 171, 171);
+    border-radius: 10px;
+    padding: 50px 60px;
+}
+
+#question-mark {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+
+.wrapper h1 {
+    font-size: 45px;
+    text-align: center;
+    padding: 20px;
+}
+
+.wrapper img {
+    height: 180px;
+    width: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid #1d2845;
+    border-radius: 40px;
+    font-size: 18px;
+    color: #1d2845;
+    padding: 22px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+    color: #1d2845;
+}
+
+.wrapper .remember-forgot {
+    text-align: right;
+    font-size: 17.5px;
+    margin: -15px 10px;
+}
+
+.remember-forgot a {
+    color: #1d2845;
+    text-decoration: underline;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+    /* Cleaned up the URL syntax here too */
+    background-image: url('bg login.jpg'); 
+}
+
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    margin-top: 70px;
+    background: #1d2845;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.156);
+    cursor: pointer;
+    color: #fff;
+    font-family: 'Ramillas Bold';
+    font-size: 20px;
+}
+
+.wrapper .register-link {
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 0 -4px;
+}
+
+.register-link p a {
+    color: #1d2845;
+    text-decoration: none;
+    font-family: 'Ramillas Bold';
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}
