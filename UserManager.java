@@ -40,4 +40,53 @@ public class UserManager {
             return false;
         }
     }
+    
+    public boolean registerUser(String fName, String lName, String uName, String email, String pass) {
+        // UPDATED: Removed underscores to match your 'firstname' and 'lastname' columns
+        String query = "INSERT INTO users (firstname, lastname, username, email, password_hash) VALUES (?, ?, ?, ?, ?)";
+        
+        try (Connection conn = DBConnection.getConnection(); 
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            
+            pstmt.setString(1, fName);
+            pstmt.setString(2, lName);
+            pstmt.setString(3, uName);
+            pstmt.setString(4, email);
+            pstmt.setString(5, pass); 
+            
+            int rowsAffected = pstmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+ // Retrieves a user's details based on their username
+    public String[] getUserDetails(String username) {
+        String query = "SELECT first_name, last_name, email FROM users WHERE username = ?";
+        String[] userDetails = new String[3]; // Array to hold [firstName, lastName, email]
+
+        try (Connection conn = DBConnection.getConnection(); 
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            
+            // Put the logged-in username into the query
+            pstmt.setString(1, username);
+            
+            try (ResultSet rs = pstmt.executeQuery()) {
+                // If we found the user in the database, grab their data!
+                if (rs.next()) {
+                    userDetails[0] = rs.getString("first_name");
+                    userDetails[1] = rs.getString("last_name");
+                    userDetails[2] = rs.getString("email");
+                    return userDetails;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching user details: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        return null; // Return null if the user isn't found or an error occurs
+    }
 }
