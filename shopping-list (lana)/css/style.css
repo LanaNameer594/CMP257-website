@@ -1,0 +1,413 @@
+@font-face {
+  font-family: 'Rigoletto';
+  src: url('../../fonts/Rigoletto.otf');
+}
+
+@font-face {
+  font-family: 'Able Lead';
+  src: url('../../fonts/Able_Lead.ttf');
+}
+
+@font-face {
+  font-family: 'Hypermarket';
+  src: url('../../fonts/hypermarket-regular.ttf');
+}
+
+@font-face {
+  font-family: 'Ramillas Regular';
+  src: url('../../fonts/TT_Ramillas_Trial_Regular.ttf');
+}
+
+body{
+  background-image: url(../images/Background.png);
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+
+  font-family: 'Ramillas Regular', serif;
+}
+
+.title_font{
+  font-family: 'Rigoletto', sans-serif;
+  font-weight: normal;
+}
+
+.navbar .title_font{
+  color: #133951;
+  font-size: 40px;
+  margin: 10px;
+}
+
+.receipt .title_font {
+  font-size: 30px;
+  font-weight: 600;
+  padding-top: 20px;
+  padding-bottom: 18px;
+  text-transform: none;
+}
+
+.groceries {
+  font-family: 'Hypermarket', sans-serif;
+  font-size: 1.45rem;
+  text-align: center;
+  padding-bottom: 12px;
+}
+
+p{
+  margin: 0 0 10px;
+}
+
+.list{
+  margin: 5px 0vh;
+}
+
+.info{
+  margin: 0vh;
+  text-align: left;
+}
+
+p,
+table,
+.info {
+  font-family: 'Hypermarket', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.75rem;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+thead{
+  border-top: 1px dashed;
+  border-bottom: 1px dashed;
+}
+
+.begin{
+  padding-left: 0vh;
+}
+
+td{
+  padding: 2px 10px;
+  vertical-align: top;
+}
+
+.length{
+  text-align: right;
+  padding-left: 10px;
+  padding-right: 0px;
+}
+
+.thanks{
+  text-align: center;
+  padding: 15px 0px;
+}
+
+.thanks img{
+  vertical-align: middle;
+  width: 70%;
+  border: 0;
+}
+
+.nav_style{
+    font-size: 30px;
+    background-color: #F3C12C;
+    color: #133951;
+}
+
+.nav-link{
+  margin-left: 30px;
+}
+
+.navbar-toggler .navbar-toggler-icon{
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2819, 57, 81, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+}
+.navbar-toggler{
+  border: 2px solid #133951;
+}
+
+.shopping-board {
+  background-color: #EDE2CD;
+  width: min(90vw, 1450px);
+  min-height: 68vh;
+  border-radius: 6px;
+  margin: -20px auto 5vh;
+  padding: 55px 70px 55px;
+  display: block;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.16);
+  overflow: visible;
+}
+
+.shopping-layout {
+  min-height: 62vh;
+  align-items: center;
+}
+
+.custom-col {
+  min-height: 58vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/*.line{
+  border-right: #133951 solid 2px;
+}
+
+.custom-col {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  min-height: 66vh;
+  position: relative;
+}*/
+
+.patch {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+  z-index: 3;
+}
+
+.patch img {
+  width: 390px;
+  height: auto;
+  
+}
+
+@media (max-width: 1024px) {
+  .shopping-board {
+    width: 92vw;
+    padding: 70px 45px 50px;
+  }
+
+  .patch img {
+    width: 350px;
+  }
+
+  .basket-container img.basket-bg {
+    height: min(42vh, 400px);
+  }
+
+  .receipt {
+    width: min(34vw, 360px);
+    min-height: 520px;
+  }
+}
+
+@media (max-width: 768px) {
+  .rest {
+    padding-top: 11vh;
+  }
+
+  .shopping-board {
+    width: 92vw;
+    padding: 78px 34px 45px;
+  }
+
+  .shopping-layout {
+    flex-direction: column;
+  }
+
+  .shopping-layout .custom-col {
+    width: 100%;
+    min-height: auto;
+    margin-bottom: 40px;
+  }
+
+  .patch img {
+    width: 290px;
+  }
+
+  .basket-container {
+    transform: rotate(-7deg);
+  }
+
+  .basket-container:hover {
+    transform: rotate(-5deg) translateY(-4px);
+  }
+
+  .basket-container img.basket-bg {
+    height: min(36vh, 340px);
+  }
+
+  .receipt {
+    width: min(72vw, 350px);
+    min-height: 500px;
+    transform: rotate(1.5deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .shopping-board {
+    width: 94vw;
+    padding: 68px 20px 35px;
+  }
+
+  .patch img {
+    width: 220px;
+  }
+
+  .basket-container img.basket-bg {
+    height: min(30vh, 260px);
+  }
+
+  .receipt {
+    width: min(82vw, 320px);
+    min-height: 470px;
+    padding: 32px 24px 24px;
+  }
+
+  p,
+  table,
+  .info {
+    font-size: 0.85rem;
+    line-height: 1.55rem;
+  }
+
+  .receipt .title_font {
+    font-size: 26px;
+  }
+
+  .groceries {
+    font-size: 1.2rem;
+  }
+}
+
+.rest {
+  position: relative;
+  padding-top: 10vh;
+}
+
+.basket-container {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+  transform: rotate(-8deg) translateX(-8px);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+}
+
+.basket-container:hover {
+  transform: rotate(-6deg) translateX(-8px) translateY(-4px);
+}
+
+.basket-container img.basket-bg {
+  width: auto;
+  height: min(48vh, 470px);
+  display: block;
+  max-width: 100%;
+  opacity: 0.9;
+  filter: drop-shadow(14px 18px 14px rgba(0, 0, 0, 0.20));
+}
+
+/*.basket {
+  top: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.basket img {
+  width: auto;
+  height: 45vh;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}*/
+
+.receipt-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.receipt {
+  position: relative;
+  background-image: url(../images/Receipt\ Shadow.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: min(28vw, 390px);
+  min-height: 560px;
+  padding: 38px 34px 28px;
+  text-transform: uppercase;
+  transform: rotate(2.5deg);
+  border: none;
+  box-shadow: none;
+}
+
+/*.receipt img {
+  width: auto;
+  height: 80vh;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}*/
+
+.no-margin{
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  position: absolute;
+  width: 40%;
+  height: auto;
+  z-index: 2;
+}
+
+.eggs {
+  top: 8%;
+  right: 7%;
+}
+
+.sugar {
+  top: 15%;
+  left: 10%;
+}
+
+.milk {
+  top: 35%;
+  right: 10%;
+  width: 35%;
+}
+
+.chicken {
+  top: 50%;
+  left: 12%;
+}
+
+.cherries {
+  bottom: 8%;
+  left: 35%;
+}
+
+#clear-list-btn{
+	font-family : 'Ramillas Regular', serif;
+	color: white;
+	background-color: #133951;
+	margin: 0 auto;
+	border: none;
+}
+
+#clear-list-btn:hover {
+	font-family : 'Ramillas Regular', serif;
+	color: white;
+	background-color: #F3C12C;
+	border: none;
+}

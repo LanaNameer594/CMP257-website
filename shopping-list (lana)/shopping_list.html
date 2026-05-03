@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Shopping List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>        
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <header class="nav_style">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand title_font" href="../home/index.html">The Cookbook</a>
+                    <button class="navbar-toggler nav_style" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav ms-auto">
+                            <a class="nav-link nav_style" href="../recipes/recipe.html">Recipes</a>
+                            <a class="nav-link nav_style" href="shopping_list.html">Shopping List</a>
+                            <a class="nav-link nav_style" href="../home/index.html">My Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="rest">
+            <div class="patch">
+                <img src="images/Patch.png">
+            </div>
+
+            <section class="shopping-board">
+			    <div class="container-fluid text-center no-margin">
+			        <div class="row shopping-layout">
+			            <div class="col-6 basket custom-col">
+                            <div class="basket-container">
+                            	<img src="images/Shopping Basket Shadow.png" class="basket-bg" alt="Shopping basket">
+                                <img src="images/almonds.png" class="item almonds" id="basket-almonds" style="display: none;">
+								<img src="images/amaretto liqueur.png" class="item amaretto-liqueur" id="basket-liqueur" style="display: none;">
+								<img src="images/apple cider vinegar.png" class="item apple-cider-vinegar" id="basket-vinegar" style="display: none;">
+								<img src="images/apricot brandy.jpg" class="item apricot-brandy" id="basket-brandy" style="display: none;">
+								<img src="images/apricots.png" class="item apricots" id="basket-apricot" style="display: none;">
+								<img src="images/avocado.png" class="item avocado" id="basket-avocado" style="display: none;">
+								<img src="images/baking powder.png" class="item baking-powder" id="basket-baking-powder" style="display: none;">
+								<img src="images/beans.png" class="item beans" id="basket-beans" style="display: none;">
+								<img src="images/blueberries.png" class="item blueberries" id="basket-blueberries" style="display: none;">
+								<img src="images/bread.png" class="item bread" id="basket-bread" style="display: none;">
+								<img src="images/cheese.png" class="item cheese" id="basket-cheese" style="display: none;">
+								<img src="images/cherries.png" class="item cherries" id="basket-cherries" style="display: none;">
+								<img src="images/chicken.png" class="item chicken" id="basket-chicken" style="display: none;">
+								<img src="images/cornstarch.png" class="item cornstarch" id="basket-cornstarch" style="display: none;">
+								<img src="images/eggs.png" class="item eggs" id="basket-eggs" style="display: none;">
+								<img src="images/flour.png" class="item flour" id="basket-flour" style="display: none;">
+								<img src="images/fresh rosemary sprigs.png" class="item fresh-rosemary-sprigs" id="basket-rosemary" style="display: none;">
+								<img src="images/kiwis.png" class="item kiwis" id="basket-kiwis" style="display: none;">
+								<img src="images/lime juice.png" class="item lime-juice" id="basket-lime-juice" style="display: none;">
+								<img src="images/long-grain rice.png" class="item long-grain-rice" id="basket-rice" style="display: none;">
+								<img src="images/nectar.png" class="item nectar" id="basket-nectar" style="display: none;">
+								<img src="images/olives.png" class="item olives" id="basket-olives" style="display: none;">
+								<img src="images/orange.png" class="item orange" id="basket-orange" style="display: none;">
+								<img src="images/peach.png" class="item peach" id="basket-peach" style="display: none;">
+								<img src="images/persimmon.png" class="item persimmon" id="basket-persimmon" style="display: none;">
+								<img src="images/pineapple.png" class="item pineapple" id="basket-pineapple" style="display: none;">
+								<img src="images/pomegranate juice.png" class="item pomegranate-juice" id="basket-pomegranate-juice" style="display: none;">
+								<img src="images/pomegranate seeds.png" class="item pomegranate-seeds" id="basket--seeds" style="display: none;">
+								<img src="images/porkchops.png" class="item porkchops" id="basket-porkchops" style="display: none;">
+								<img src="images/saffron threads.png" class="item saffron-threads" id="basket-saffron" style="display: none;">
+								<img src="images/steak.png" class="item steak" id="basket-steak" style="display: none;">
+								<img src="images/strawberries.png" class="item strawberries" id="basket-strawberries" style="display: none;">
+                            </div>
+                        </div>
+                        <div class="col-6 receipt-area custom-col">
+    						<div class="receipt">
+	                            <h2 class="title_font">The Cookbook</h2>
+	                            <p class="groceries">GROCERIES</p>
+	                            <p class="info">DATE</p>
+	                            <p class="info">NAME</p>
+	                            <table class="list">
+	                                <thead>
+	                                    <tr>
+	                                        <td class="begin">QTY</td>
+	                                        <td>ITEM</td>
+	                                        <td class="length">AMT</td>
+	                                    </tr>
+	                                </thead>
+	                                <tbody id="shopping-list-body">
+	                                </tbody>
+	                            </table>
+	                            <div class="thanks">
+	                                <p>THANK YOU FOR VISITING!</p>
+	                                <img src="images/barcode.png">
+	                            </div>
+	                            <div class="text-center mt-4" style="margin-bottom: 15px;">
+	                                <button id="clear-list-btn" class="btn btn-danger btn-lg">Clear List</button>
+	                            </div>
+                        	</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <script src="js/main.js"></script>
+    </body>
+</html>
