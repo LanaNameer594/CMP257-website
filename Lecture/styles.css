@@ -2,6 +2,8 @@
    1. GLOBAL STYLES
    ========================================== */
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     font-family: 'Ramillas', serif;
 }
@@ -18,16 +20,14 @@
 
 @font-face {
   font-family: 'Ramillas Bold';
-  src: url(fonts/TT\ Ramillas\ Trial\ Bold.ttf);
+  src: url('fonts/TT\ Ramillas\ Trial\ Bold.ttf');
 }
-
 
 body {
     display: flex;
     flex-direction: column; /* Stack the navbar on top, main content below */
     min-height: 100vh;
     background-color: #ffe99e;
-    /* Added quotes around the URL just in case the space causes issues */
     background-image: url('bg login.jpg'); 
     background-size: cover;
     background-position: center;
@@ -67,38 +67,34 @@ body {
 }
 
 .nav-btn:hover {
-    background-color: #FFC300; /* Fallback for var(--yellow) if not defined globally */
-    color: #0B2046; /* Fallback for var(--dark-blue) */
+    background-color: #FFC300; 
+    color: #0B2046; 
 }
 
 /* ==========================================
-   3. LOGIN CONTAINER (Fills remaining space)
+   3. LOGIN CONTAINER
    ========================================== */
 .login-main {
-    flex: 1; /* Tells the container to fill all space left over by the navbar */
+    flex: 1; 
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px;
+    padding: 60px 20px; /* Added left/right padding so it doesn't touch screen edges on mobile */
 }
 
 /* ==========================================
    4. LOGIN BOX (WRAPPER) STYLES
    ========================================== */
 .wrapper {
-    width: 600px;
-    height: 600px;
+    width: 100%; /* Allows it to shrink on small screens */
+    max-width: 600px; /* Prevents it from getting too wide on desktops */
+    height: auto; /* Allows the box to stretch naturally based on content */
     background: rgb(222, 217, 209);
     border: 2px solid rgba(29, 40, 69, 0.647);
     color: #1d2845;
     box-shadow: 0 0 10px rgb(175, 171, 171);
     border-radius: 10px;
     padding: 50px 60px;
-}
-
-#question-mark {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 16px;
 }
 
 .wrapper h1 {
@@ -124,7 +120,7 @@ body {
 
 .input-box input {
     width: 100%;
-    height: 100%;
+    height: 100%; /* Changed to 100% to prevent overflow */
     background: transparent;
     border: none;
     outline: none;
@@ -132,47 +128,51 @@ body {
     border-radius: 40px;
     font-size: 18px;
     color: #1d2845;
-    padding: 22px 45px 20px 20px;
+    padding: 0 45px 0 20px; /* Adjusted padding to center text vertically */
 }
 
 .input-box input::placeholder {
-    color: #1d2845;
+    color: #666972;
 }
 
 .wrapper .remember-forgot {
     text-align: right;
     font-size: 17.5px;
-    margin: -15px 10px;
+    margin: -10px 10px;
 }
 
 .remember-forgot a {
     color: #1d2845;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .remember-forgot a:hover {
     text-decoration: underline;
-    /* Cleaned up the URL syntax here too */
-    background-image: url('bg login.jpg'); 
 }
 
 .wrapper .btn {
     width: 100%;
-    height: 45px;
-    margin-top: 70px;
+    height: 55px;
+    margin-top: 30px;
     background: #1d2845;
     border: none;
     outline: none;
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.156);
     cursor: pointer;
-    color: #fff;
+    color: #FAF5E9;
     font-family: 'Ramillas Bold';
     font-size: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.wrapper .btn:hover {
+    background-color: #FFC300;
+    color: #1d2845;
 }
 
 .wrapper .register-link {
-    font-size: 20px;
+    font-size: 17.5px;
     text-align: center;
     margin: 20px 0 -4px;
 }
@@ -185,4 +185,60 @@ body {
 
 .register-link p a:hover {
     text-decoration: underline;
+}
+
+/* ==========================================
+   5. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================== */
+
+/* Tablets and smaller screens */
+@media (max-width: 768px) {
+    .navbar .title_font {
+        font-size: 32px;
+    }
+    
+    .nav_style {
+        font-size: 24px;
+    }
+
+    .wrapper {
+        padding: 40px 30px;
+    }
+
+    .wrapper img {
+        height: 140px; /* Shrink logo slightly */
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+    .login-main {
+        padding: 30px 15px; /* Less empty space around the box on phones */
+    }
+
+    .wrapper {
+        padding: 30px 20px;
+    }
+
+    .wrapper img {
+        height: 110px;
+    }
+
+    .wrapper .input-box {
+        margin: 20px 0; /* Tighter spacing between inputs */
+    }
+
+    .input-box input {
+        font-size: 16px; /* Slightly smaller text for inputs */
+    }
+
+    .wrapper .btn {
+        margin-top: 35px;
+        height: 50px;
+    }
+
+    .wrapper .remember-forgot,
+    .wrapper .register-link {
+        font-size: 15px; /* Scale down link text */
+    }
 }
