@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Create an Account</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        
+        <link rel="stylesheet" href="createstyle.css">
+    </head>
+    <body>
+        
+        <header class="nav_style w-100">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand title_font" href="../home/index.html">The Cookbook</a>
+                    <button class="navbar-toggler nav_style" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav ms-auto">
+                            <a class="nav-link nav_style" href="../recipes/recipe.html">Recipes</a>
+                            <a class="nav-link nav_style" href="../shopping_list/shopping_list.html">Shopping List</a>
+                            <a class="nav-link nav_style" href="login.html">Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="login-main">
+            <div class="wrapper">
+                <img id="patch" src="images/create.png" alt="Create Icon">
+            
+                <form action="/TheCookbook/RegisterServlet" method="POST">
+                    <div class="ceramic-divider"></div>
+                    <div class="pfp-box text-center my-4">
+                        <br>
+                        <input type="file" id="file-input" accept=".png, .jpg, .jpeg">
+                        <label for="file-input" class="upload-button mt-3"><img src="user.png" class="profile-picture" alt="User Profile"></label>
+                    </div>
+
+                    <div class="box">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="firstName" placeholder="First Name ">
+                    </div>
+                    
+                    <div class="box">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="lastName" placeholder="Last Name">
+                    </div>
+                    
+                    <div class="box">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Username">
+                    </div>
+                    
+                    <div class="box">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Email">
+                    </div>
+                    
+                    <div class="box">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="............">
+                    </div>
+
+                    <button type="submit" class="btn">Submit Changes</button>
+                </form>
+            </div>
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,328 @@
+/* =========================================
+   1. VARIABLES & FONTS
+   ========================================= */
+:root {
+    --cream: #FAF5E9;
+    --dark-blue: #133951;
+    --yellow: #F3C12C;
+    --white: #FFFFFF;
+}
+
+@font-face {
+    font-family: 'Ramillas';
+    src: url('../fonts/TT\ Ramillas\ Trial\ Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Rigoletto';
+    src: url('../fonts/Rigoletto.otf');
+}
+
+@font-face {
+    font-family: 'Ramillas Bold';
+    src: url(../fonts/TT\ Ramillas\ Trial\ Bold.ttf);
+}
+
+/* =========================================
+   2. GLOBAL STYLES
+   ========================================= */
+body {
+    margin: 0;
+    font-family: 'Ramillas', serif;
+    background-color: var(--cream);
+    color: var(--dark-blue);
+}
+
+.dark-blue-text { 
+	color: var(--dark-blue); 
+	font-family: 'Ramillas Bold'
+	}
+
+.title_font {
+    font-family: 'Rigoletto', sans-serif;
+    font-weight: normal;
+}
+
+.hidden { display: none !important; }
+
+/* =========================================
+   3. NAVBAR
+   ========================================= */
+.navbar .title_font {
+    color: var(--dark-blue);
+    font-size: 40px;
+    margin: 10px;
+}
+
+.nav_style {
+    font-size: 30px;
+    font-family: 'Ramillas', serif;
+    background-color: var(--yellow);
+    color: var(--dark-blue);
+}
+
+.nav-link { margin-left: 30px; }
+
+.navbar-toggler { border: 2px solid var(--dark-blue); }
+
+.navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2819, 57, 81, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
+/* =========================================
+   5. PROFILE HEADER & TABS
+   ========================================= */
+.profile-banner {
+    height: 150px;
+    background-color: var(--dark-blue);
+}
+
+.avatar-container {
+    text-align: center;
+    margin-top: -50px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px solid var(--yellow);
+    background-color: var(--white);
+    object-fit: cover;
+}
+
+#welcome-text { 
+    text-align: center; 
+    font-size: 3rem; 
+    font-family: 'Ramillas Bold', serif;
+    margin-bottom: 20px;
+}
+
+.tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    color: var(--dark-blue);
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+
+.tab-btn.active {
+    border-bottom: 4px solid var(--yellow);
+    font-family: 'Ramillas Bold', serif;
+}
+
+.tab-content { display: none; }
+.active-content { display: block; }
+
+#favorites, #settings{
+    padding-bottom: 40px; /* This creates a nice gap at the very bottom */
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   6. RECIPE CARDS
+   ========================================= */
+   
+.recipe-card {
+    background: var(--white);
+    border: 1px solid var(--dark-blue);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-img-placeholder {
+    height: 240px; 
+    background-color: #ddd; 
+    position: relative;
+}
+
+.lemon-icon {
+    position: absolute;
+    top: 10px; right: 10px;
+    font-size: 1.5rem;
+    background: var(--dark-blue);
+    border-radius: 50%;
+    padding: 5px;
+}
+
+/* =========================================
+   7. SETTINGS & GENERAL INFO
+   ========================================= */
+.settings-list {
+    max-width: 950px; 
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+}
+
+.general-info {
+    background: var(--white);
+    padding: 60px 50px; 
+    border-radius: 16px;
+    border: 2px solid var(--yellow);
+    box-shadow: 0 4px 15px rgba(11, 32, 70, 0.1);
+    width: 100%;
+}
+
+.general-info h2 { font-size: 50px; }
+.general-info p { color: var(--dark-blue); font-size: 20px; }
+
+.ceramic-divider {
+    height: 2px; 
+    background-color: var(--dark-blue); 
+    margin-bottom: 15px;
+    border-radius: 2px; 
+}
+
+/* Input Rows */
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    gap: 15px;
+}
+
+.box label, .box span {
+    color: var(--dark-blue);
+    font-size: 20px; 
+    font-weight: 600;
+    flex: 0 0 140px; 
+}
+
+.box input {
+    flex: 1;
+    font-size: 18px; 
+    padding: 12px 15px; 
+    border: 1px solid var(--dark-blue);
+    border-radius: 8px;
+    background-color: var(--cream);
+    color: var(--dark-blue);
+    outline: none;
+    transition: 0.2s;
+}
+
+.box input:focus {
+    border: 2px solid var(--yellow);
+    background-color: var(--white);
+}
+
+.box input:disabled {
+    opacity: 0.7;
+    background-color: #f0f0f0;
+}
+
+/* Profile Picture Upload */
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--yellow);
+}
+
+#file-input { display: none; }
+
+/* =========================================
+   8. BUTTONS
+   ========================================= */
+.nav-btn:hover {
+    background-color: var(--yellow);
+    color: var(--dark-blue);
+}
+
+.upload-button {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+
+.edit-profile {
+    background: var(--cream);
+    color: var(--dark-blue);
+    border: 2px solid var(--dark-blue);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.edit-profile:hover {
+    background: var(--dark-blue);
+    color: var(--white);
+}
+
+.save-active {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    border-color: var(--dark-blue);
+}
+
+.save-active:hover {
+    background-color: var(--yellow);
+    color: var(--dark-blue);
+    border-color: var(--yellow);
+}
+
+.submit-btn, .save-btn {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Ramillas', serif;
+    transition: 0.3s;
+}
+
+.submit-btn:hover, .save-btn:hover {
+    background-color: var(--yellow);
+    color: var(--dark-blue);
+}
+
+/* Styling for the Logout and Theme buttons */
+#logoutBtn {
+    background-color: var(--white);
+    color: var(--dark-blue);
+    border: 2px solid var(--dark-blue);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+#logoutBtn:hover {
+    background-color: var(--yellow); /* Subtle red for logout */
+    color: var(--cream);
+    border-color: var(--yellow);
+}
+
+/* =========================================
+   10. MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 600px) {
+    .box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .box label, .box span {
+        flex: none;
+        width: 100%;
+    }
+    .box input { width: 100%; }
+}
